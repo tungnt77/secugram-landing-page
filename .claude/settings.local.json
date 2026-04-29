@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(py --version)",
+      "PowerShell(Get-Command node, npm, npx, py, python, dotnet -ErrorAction SilentlyContinue)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:5173/ui_kits/website/Features.jsx\" -UseBasicParsing; $r.StatusCode; $r.Content.Length)",
+      "Bash(curl -sI http://localhost:5173/ui_kits/website/Features.jsx)",
+      "Bash(curl -s http://localhost:5173/ui_kits/website/index.html)",
+      "Bash(curl -s -m 5 \"http://[::1]:5173/ui_kits/website/index.html\")",
+      "Bash(curl -s -m 5 -H \"Host: localhost:5173\" \"http://127.0.0.1:5173/ui_kits/website/index.html\")",
+      "Bash(awk '{ *)",
+      "PowerShell(Get-Process powershell, pwsh -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $pid } | ForEach-Object { Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue }; \"cleaned\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"root: %{http_code} \\(%{size_download} bytes\\)\\\\n\" \"http://127.0.0.1:5173/\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"ui: %{http_code} \\(%{size_download} bytes\\)\\\\n\" \"http://127.0.0.1:5173/ui_kits/website/index.html\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"feat: %{http_code} \\(%{size_download} bytes\\)\\\\n\" \"http://127.0.0.1:5173/ui_kits/website/Features.jsx\")",
+      "PowerShell(Start-Job -Name secugram -ScriptBlock { & \"C:\\\\Users\\\\Asus\\\\Documents\\\\New project\\\\secugram_landing_page\\\\.claude\\\\serve.ps1\" } | Out-Null; Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:5173/\" -UseBasicParsing -TimeoutSec 4; \"OK $\\($r.StatusCode\\) len=$\\($r.Content.Length\\)\" } catch { \"ERR: $_\" }; Receive-Job -Name secugram -Keep | Select-Object -First 5)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"root: %{http_code}\\\\n\" \"http://localhost:5173/\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"ui: %{http_code}\\\\n\" \"http://localhost:5173/ui_kits/website/index.html\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"feat: %{http_code}\\\\n\" \"http://localhost:5173/ui_kits/website/Features.jsx\")"
+    ]
+  }
+}
