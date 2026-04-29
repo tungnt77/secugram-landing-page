@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secugram — Secure Today. Scale Tomorrow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <template id="__bundler_thumbnail" data-bg-color="#ffffff">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <!-- Nav bar -->
+      <rect x="0" y="0" width="1200" height="70" fill="#ffffff"/>
+      <rect x="0" y="69" width="1200" height="1" fill="#e5e7eb"/>
+      <!-- Logo mark simplified -->
+      <polygon points="60,18 90,34 90,56 60,72 30,56 30,34" fill="none" stroke="#1e3a5f" stroke-width="4"/>
+      <circle cx="60" cy="42" r="7" fill="none" stroke="#0d9488" stroke-width="3"/>
+      <!-- Wordmark -->
+      <rect x="100" y="28" width="120" height="14" rx="3" fill="#1e3a5f" opacity="0.8"/>
+      <!-- Nav links -->
+      <rect x="820" y="28" width="50" height="12" rx="3" fill="#e5e7eb"/>
+      <rect x="890" y="28" width="50" height="12" rx="3" fill="#e5e7eb"/>
+      <rect x="960" y="28" width="50" height="12" rx="3" fill="#e5e7eb"/>
+      <rect x="1030" y="22" width="110" height="26" rx="13" fill="#0d9488"/>
+      <!-- Hero left -->
+      <rect x="0" y="70" width="600" height="430" fill="#ffffff"/>
+      <rect x="60" y="140" width="200" height="12" rx="3" fill="#0d9488" opacity="0.6"/>
+      <rect x="60" y="168" width="440" height="44" rx="5" fill="#1e3a5f" opacity="0.85"/>
+      <rect x="60" y="220" width="380" height="44" rx="5" fill="#1e3a5f" opacity="0.85"/>
+      <rect x="60" y="286" width="300" height="20" rx="3" fill="#4b5563" opacity="0.5"/>
+      <rect x="60" y="318" width="260" height="20" rx="3" fill="#4b5563" opacity="0.5"/>
+      <rect x="60" y="370" width="160" height="44" rx="22" fill="#0d9488"/>
+      <!-- Stats -->
+      <rect x="60" y="450" width="60" height="18" rx="3" fill="#1e3a5f" opacity="0.7"/>
+      <rect x="160" y="450" width="60" height="18" rx="3" fill="#1e3a5f" opacity="0.7"/>
+      <rect x="260" y="450" width="60" height="18" rx="3" fill="#1e3a5f" opacity="0.7"/>
+      <!-- Hero right dark -->
+      <polygon points="600,70 1200,70 1200,500 600,500 636,70" fill="#0d1b2e"/>
+      <!-- Hex graphic -->
+      <polygon points="900,170 980,215 980,305 900,350 820,305 820,215" fill="none" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+      <polygon points="900,195 958,228 958,294 900,327 842,294 842,228" fill="none" stroke="#0d9488" stroke-width="2" opacity="0.7"/>
+      <circle cx="900" cy="248" r="22" fill="none" stroke="#0d9488" stroke-width="3"/>
+      <path d="M860,330 L900,220 L940,260" stroke="#14b8a6" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Trust bar -->
+      <rect x="0" y="500" width="1200" height="60" fill="#1e3a5f"/>
+      <rect x="200" y="518" width="80" height="12" rx="3" fill="#14b8a6" opacity="0.7"/>
+      <rect x="450" y="518" width="80" height="12" rx="3" fill="#14b8a6" opacity="0.7"/>
+      <rect x="700" y="518" width="80" height="12" rx="3" fill="#14b8a6" opacity="0.7"/>
+      <rect x="950" y="518" width="80" height="12" rx="3" fill="#14b8a6" opacity="0.7"/>
+      <!-- Features section -->
+      <rect x="0" y="560" width="1200" height="240" fill="#f9fafb"/>
+      <rect x="60" y="590" width="340" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+      <rect x="430" y="590" width="340" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+      <rect x="800" y="590" width="340" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    </svg>
+  </template>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body, #root { height: 100%; }
+    body { font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; background: var(--tw-page-bg); }
+    #page-scroll { height: 100vh; overflow-y: auto; scroll-behavior: smooth; background: var(--tw-page-bg); }
+    #toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--tw-brand); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; padding: 12px 28px; border-radius: 9999px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); transition: transform 350ms cubic-bezier(0.34,1.56,0.64,1); z-index: 9999; white-space: nowrap; }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── Design tokens (overridden by Tweaks) ─────────── */
+    :root {
+      --tw-brand:          #1e3a5f;
+      --tw-accent:         #0d9488;
+      --tw-accent-hover:   #0b7a70;
+      --tw-accent-light:   #f0fdf9;
+      --tw-dark:           #0d1b2e;
+      --tw-page-bg:        #ffffff;
+      --tw-section-alt:    #f9fafb;
+      --tw-text-heading:   #1e3a5f;
+      --tw-text-body:      #4b5563;
+      --tw-text-muted:     #6b7280;
+      --tw-nav-bg:         #ffffff;
+      --tw-nav-border:     #e5e7eb;
+      --tw-nav-text:       #6b7280;
+      --tw-trust-bg:       #1e3a5f;
+      --tw-trust-text:     #14b8a6;
+      --tw-trust-sub:      #94a3b8;
+      --tw-footer-bg:      #0d1b2e;
+      --tw-card-bg:        #ffffff;
+      --tw-card-border:    #e5e7eb;
+      --tw-hero-left-bg:   #ffffff;
+      --tw-hero-right-disp:flex;
+      --tw-hero-cols:      1fr 1fr;
+      --tw-hero-align:     left;
+      --tw-hero-h1:        #1e3a5f;
+      --tw-hero-sub:       #4b5563;
+      --tw-h1-size:        52px;
+      --tw-h1-weight:      800;
+      --tw-h1-tracking:    -0.02em;
+      --tw-h2-size:        40px;
+      --tw-h2-weight:      800;
+      --tw-h2-tracking:    -0.02em;
+      --tw-body-size:      16px;
+      --tw-body-lh:        1.6;
+      --tw-outcome-bg:     #f0fdf9;
+      --tw-outcome-border: #a7f3d0;
+      --tw-outcome-title:  #0d9488;
+      --tw-step-dot:       #0d9488;
+    }
+    /* Hero layout variants */
+    [data-hero-style='centered'] [data-tw-hero-grid] { grid-template-columns: 1fr !important; }
+    [data-hero-style='centered'] [data-tw-hero-right] { display: none !important; }
+    [data-hero-style='centered'] [data-tw-hero-left] { text-align: center; padding: 100px 80px !important; }
+    [data-hero-style='centered'] [data-tw-hero-ctas],
+    [data-hero-style='centered'] [data-tw-hero-stats] { justify-content: center !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-grid] { grid-template-columns: 1fr !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-right] { display: none !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-left] { background: linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 100%) !important; padding: 100px 80px !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-h1] { color: #ffffff !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-sub] { color: rgba(255,255,255,0.72) !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-stats-num] { color: #ffffff !important; }
+    [data-hero-style='full-dark'] [data-tw-hero-contact-link] { color: rgba(255,255,255,0.8) !important; border-bottom-color: rgba(255,255,255,0.4) !important; }
+    /* Type scale variants */
+    [data-type-scale='refined'] [data-tw-h1] { font-size: 44px !important; font-weight: 600 !important; letter-spacing: 0.01em !important; }
+    [data-type-scale='refined'] [data-tw-h2] { font-size: 32px !important; font-weight: 600 !important; letter-spacing: 0.01em !important; }
+    [data-type-scale='refined'] [data-tw-body] { font-size: 17px !important; line-height: 1.8 !important; }
+
+    /* Print styles */
+    @media print {
+      @page { size: A4 portrait; margin: 1cm; }
+      html, body, #root { height: auto !important; }
+      #page-scroll { height: auto !important; overflow: visible !important; }
+      [data-tw-nav] { position: static !important; box-shadow: none !important; }
+      #toast { display: none !important; }
+      [data-tw-hero-grid] { break-inside: avoid; page-break-inside: avoid; }
+      [data-tw-section-bg], [data-tw-section-alt], #features, #pricing, #contact {
+        break-inside: avoid-page; page-break-inside: avoid; padding: 36px 40px !important;
+      }
+      [data-tw-section-bg], [data-tw-section-alt] { break-before: auto; }
+      h2, h3 { break-after: avoid; page-break-after: avoid; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      /* Hide tweaks panel & any fixed UI */
+      .tweaks-panel, [data-tweaks-panel], .__edit-mode-panel { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="toast"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="Tweaks.jsx"></script>
+<script type="text/babel" src="HeroGraphics.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="Features.jsx"></script>
+<script type="text/babel" src="Pricing.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+
+<script type="text/babel">
+
+// ── Contact Section ──────────────────────────────────────────
+const ContactSection = () => {
+  const [form, setForm] = React.useState({ name: '', email: '', company: '', message: '' });
+  const [sent, setSent] = React.useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
+  return (
+    <div id="contact" style={{ background: '#f9fafb', padding: '96px 80px' }}>
+      <div style={{ maxWidth: 680, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#0d9488', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Contact</div>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: '#1e3a5f', letterSpacing: '-0.02em', marginBottom: 14 }}>Discuss Your Cybersecurity Strategy</h2>
+          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: '#6b7280', lineHeight: 1.6 }}>Contact us at <span style={{color:'#0d9488',fontWeight:600}}>security@secugram.io</span> or fill in the form — we respond within one business day.</p>
+        </div>
+        {sent ? (
+          <div style={{ textAlign: 'center', padding: '48px 0' }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#f0fdf9', border: '2px solid #0d9488', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d9488" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 22, color: '#1e3a5f', marginBottom: 10 }}>Message Sent!</div>
+            <div style={{ fontFamily: "'Open Sans',sans-serif", color: '#6b7280' }}>We'll be in touch within one business day.</div>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              {[['name','Full Name','Jane Smith'],['email','Work Email','jane@company.com']].map(([key,label,ph])=>(
+                <div key={key}>
+                  <label style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>{label}</label>
+                  <input type={key==='email'?'email':'text'} placeholder={ph} value={form[key]} onChange={e=>setForm({...form,[key]:e.target.value})} required
+                    style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none' }}
+                    onFocus={e=>{e.target.style.borderColor='#0d9488'; e.target.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)';}}
+                    onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+                  />
+                </div>
+              ))}
+            </div>
+            <div>
+              <label style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>Company</label>
+              <input type="text" placeholder="Acme Inc." value={form.company} onChange={e=>setForm({...form,company:e.target.value})}
+                style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none' }}
+                onFocus={e=>{e.target.style.borderColor='#0d9488'; e.target.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)';}}
+                onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+              />
+            </div>
+            <div>
+              <label style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>Message</label>
+              <textarea placeholder="Tell us about your security needs..." rows={4} value={form.message} onChange={e=>setForm({...form,message:e.target.value})}
+                style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none', resize: 'vertical' }}
+                onFocus={e=>{e.target.style.borderColor='#0d9488'; e.target.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)';}}
+                onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+              />
+            </div>
+            <button type="submit" style={{
+              fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16,
+              background: '#0d9488', color: '#fff', padding: '14px 0',
+              borderRadius: 9999, border: 'none', cursor: 'pointer',
+              boxShadow: '0 4px 20px rgba(13,148,136,0.30)',
+              transition: 'background 200ms',
+            }}
+              onMouseEnter={e=>e.currentTarget.style.background='#0b7a70'}
+              onMouseLeave={e=>e.currentTarget.style.background='#0d9488'}
+            >Send Message</button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// ── Trust Bar ────────────────────────────────────────────────
+const TrustBar = () => (
+  <div data-tw-trust-bar style={{ background: '#1e3a5f', padding: '28px 80px' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64 }}>
+      {[['100+','Security Engagements'],['25+','Businesses Protected'],['<5 min','Threat Triage Time'],['99.9%','Platform Availability']].map(([tag,label])=>(
+        <div key={label} style={{ textAlign: 'center' }}>
+          <div data-tw-trust-val style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 16, color: '#14b8a6', letterSpacing: '0.04em' }}>{tag}</div>
+          <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 12, color: '#94a3b8', marginTop: 3 }}>{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// ── Toast helper ─────────────────────────────────────────────
+const showToast = (msg) => {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+};
+
+// ── App ──────────────────────────────────────────────────────
+const App = () => {
+  const [activeSection, setActiveSection] = React.useState('home');
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id === 'home' ? 'hero' : id);
+    const scroller = document.getElementById('page-scroll');
+    if (el && scroller) {
+      scroller.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' });
+    }
+    setActiveSection(id);
+  };
+
+  const handleNav = (section) => {
+    if (section === 'home') scrollTo('hero');
+    else scrollTo(section);
+  };
+
+  const handlePlanSelect = (planName) => {
+    scrollTo('contact');
+  };
+
+  return (
+    <div id="page-scroll">
+      <NavBar activeSection={activeSection} onNav={handleNav} />
+      <div id="hero"><HeroSection onNav={handleNav} /></div>
+      <TrustBar />
+      <FeaturesSection />
+      <PricingSection onSelectPlan={handlePlanSelect} />
+      <ContactSection />
+      <FooterSection onNav={handleNav} />
+    </div>
+  );
+};
+
+const PrintTrigger = () => {
+  React.useEffect(() => {
+    const trigger = async () => {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      await new Promise(r => setTimeout(r, 500));
+      window.print();
+    };
+    trigger();
+  }, []);
+  return null;
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <>
+    <App />
+    <SecugramTweaks />
+    <PrintTrigger />
+  </>
+);
+
+const PrintTrigger_unused = () => {
+  React.useEffect(() => {
+    const trigger = async () => {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      await new Promise(r => setTimeout(r, 500));
+      window.print();
+    };
+    trigger();
+  }, []);
+  return null;
+};
+</script>
+</body>
+</html>
