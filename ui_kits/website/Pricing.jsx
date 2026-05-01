@@ -135,7 +135,7 @@ const EngagementModel = ({ onContact }) => (
                 border: `2.5px solid ${bgColor}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 margin: '0 auto 20px',
-                boxShadow: isFilled ? `0 6px 20px ${bgColor}44` : '0 2px 10px rgba(13,148,136,0.10)',
+                boxShadow: isFilled ? `0 6px 20px ${bgColor}44` : '0 2px 10px rgba(11,111,102,0.10)',
               }}>
                 <StepIcon step={step.num} active={isFilled} />
               </div>
@@ -210,7 +210,7 @@ const EngagementModel = ({ onContact }) => (
           fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16,
           background: '#0b6f66', color: '#fff', padding: '14px 40px',
           borderRadius: 9999, border: 'none', cursor: 'pointer',
-          boxShadow: '0 4px 20px rgba(13,148,136,0.30)',
+          boxShadow: '0 4px 20px rgba(11,111,102,0.30)',
         }}
           onMouseEnter={e => e.currentTarget.style.background = '#095e57'}
           onMouseLeave={e => e.currentTarget.style.background = '#0b6f66'}
@@ -253,7 +253,7 @@ const IndustriesSection = () => (
               boxShadow: '0 2px 8px rgba(30,58,95,0.07)',
               transition: 'border-color 200ms, box-shadow 200ms',
             }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#0b6f66'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(13,148,136,0.12)'; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#0b6f66'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(11,111,102,0.12)'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(30,58,95,0.07)'; }}
             >
               <div style={{ width: 40, height: 40, borderRadius: 8, background: '#f0fdf9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>

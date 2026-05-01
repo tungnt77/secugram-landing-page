@@ -288,7 +288,7 @@ const CommandCenterGraphic = () => {
 // Original hexagon graphic kept as 'classic' option
 const ClassicHexGraphic = () => (
   <svg width="320" height="300" viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="160" cy="150" r="130" fill="rgba(13,148,136,0.06)"/>
+    <circle cx="160" cy="150" r="130" fill="rgba(11,111,102,0.06)"/>
     <polygon points="160,20 275,82.5 275,207.5 160,270 45,207.5 45,82.5" fill="none" stroke="rgba(20,184,166,0.25)" strokeWidth="1.5"/>
     <polygon points="160,42 255,96 255,204 160,258 65,204 65,96" fill="none" stroke="rgba(20,184,166,0.35)" strokeWidth="1.5"/>
     <polygon points="160,65 235,108.5 235,196.5 160,240 85,196.5 85,108.5" fill="none" stroke="#0b6f66" strokeWidth="2" opacity="0.5"/>
@@ -298,8 +298,8 @@ const ClassicHexGraphic = () => (
     <path d="M120 230 L160 100 L200 140" stroke="#14b8a6" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
     <path d="M188 110 L205 138 L220 118" stroke="#14b8a6" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
     <circle cx="220" cy="115" r="5" fill="#0b6f66"/>
-    <circle cx="160" cy="138" r="18" stroke="#0b6f66" strokeWidth="3" fill="rgba(13,148,136,0.1)"/>
-    <path d="M150 150 L150 165 L170 165 L170 150 Z" stroke="#0b6f66" strokeWidth="2.5" fill="rgba(13,148,136,0.2)" strokeLinejoin="round"/>
+    <circle cx="160" cy="138" r="18" stroke="#0b6f66" strokeWidth="3" fill="rgba(11,111,102,0.1)"/>
+    <path d="M150 150 L150 165 L170 165 L170 150 Z" stroke="#0b6f66" strokeWidth="2.5" fill="rgba(11,111,102,0.2)" strokeLinejoin="round"/>
   </svg>
 );
 

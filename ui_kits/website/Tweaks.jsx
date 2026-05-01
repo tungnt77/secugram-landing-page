@@ -42,7 +42,7 @@ const applyTweaks = (tweaks) => {
       '--tw-brand':        '#0b6f66',
       '--tw-accent':       tweaks.accentColor || '#14b8a6',
       '--tw-accent-hover': '#0b6f66',
-      '--tw-accent-light': 'rgba(13,148,136,0.15)',
+      '--tw-accent-light': 'rgba(11,111,102,0.15)',
       '--tw-dark':         '#060e18',
       '--tw-page-bg':      '#0d1b2e',
       '--tw-section-alt':  '#0a1628',

@@ -168,7 +168,7 @@ The system uses a hybrid of tonal layering and soft elevation. Most cards sit on
 - **Nav Scroll** (`0 2px 12px rgba(30,58,95,0.08)`): Sticky navigation after scrolling.
 - **Card Rest** (`0 2px 10px rgba(30,58,95,0.06)`): Default service and metric cards.
 - **Card Hover** (`0 12px 40px rgba(30,58,95,0.13)`): Feature cards when active.
-- **Primary CTA** (`0 6px 24px rgba(13,148,136,0.35)`): Hero primary button.
+- **Primary CTA** (`0 6px 24px rgba(11,111,102,0.35)`): Hero primary button.
 - **Diagram Lift** (`0 34px 90px rgba(0,0,0,0.38), 0 0 44px rgba(20,184,166,0.24)`): White diagram cards placed inside dark command panels.
 - **Integration Chip** (`0 6px 18px rgba(30,58,95,0.10), 0 0 0 4px #ffffff`): Logo chips on connector rows.
 
@@ -181,7 +181,7 @@ The system uses a hybrid of tonal layering and soft elevation. Most cards sit on
 ### Buttons
 - **Shape:** Fully rounded pill controls (`9999px`) are the default for CTAs.
 - **Primary:** Security Teal background, Page White text, Montserrat 700, 14px to 16px, with 14px vertical padding and 24px to 40px horizontal padding.
-- **Hover / Focus:** Hover darkens to Security Teal Hover and may translate up by 1px to 2px. Form focus uses a teal border plus `0 0 0 3px rgba(13,148,136,0.12)`.
+- **Hover / Focus:** Hover darkens to Security Teal Hover and may translate up by 1px to 2px. Form focus uses a teal border plus `0 0 0 3px rgba(11,111,102,0.12)`.
 - **Secondary / Ghost:** Text links use Command Navy with a thin underline or arrow. Keep them quiet beside the primary CTA.
 
 ### Chips
@@ -201,7 +201,7 @@ The system uses a hybrid of tonal layering and soft elevation. Most cards sit on
 - **Error / Disabled:** No explicit error or disabled state exists yet. Add these before production forms.
 
 ### Navigation
-- **Style, typography, default/hover/active states, mobile treatment.** Sticky white nav, 72px high, 60px side padding, logo left, Montserrat 13px links right. Active links use Command Navy with a 2px Security Teal underline. The contact CTA is a teal pill with a soft teal shadow. Mobile treatment is not implemented in the current prototype and must be added before shipping.
+- **Style, typography, default/hover/active states, mobile treatment.** Sticky white nav, 72px high, 60px side padding, logo left, Montserrat 13px links right. Active links use Command Navy with a 2px Security Teal underline. The contact CTA is a teal pill with a soft teal shadow. Mobile uses a labeled hamburger button that opens a full-width stacked navigation menu with 44px minimum targets.
 
 ### Feature Cards
 

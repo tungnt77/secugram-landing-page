@@ -41,7 +41,7 @@ const NavBar = ({ activeSection, onNav }) => {
         background: '#fff',
         borderBottom: scrolled ? '1px solid #e5e7eb' : '1px solid transparent',
         boxShadow: scrolled ? '0 2px 12px rgba(30,58,95,0.08)' : 'none',
-        transition: 'all 250ms ease',
+        transition: 'background 250ms ease, border-color 250ms ease, box-shadow 250ms ease',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 60px', height: 72,
       }}>
@@ -76,7 +76,7 @@ const NavBar = ({ activeSection, onNav }) => {
               borderRadius: item.isCta ? 9999 : 0,
               borderTop: 'none', borderLeft: 'none', borderRight: 'none',
               padding: item.isCta ? '11px 26px' : '0 0 2px',
-              boxShadow: item.isCta ? '0 10px 24px rgba(13,148,136,0.24)' : 'none',
+              boxShadow: item.isCta ? '0 10px 24px rgba(11,111,102,0.24)' : 'none',
               transition: 'color 200ms, border-color 200ms, background 200ms, transform 150ms, box-shadow 200ms',
               whiteSpace: 'nowrap',
             }}
@@ -84,13 +84,13 @@ const NavBar = ({ activeSection, onNav }) => {
               if (!item.isCta) return;
               e.currentTarget.style.background = '#095e57';
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 12px 28px rgba(13,148,136,0.30)';
+              e.currentTarget.style.boxShadow = '0 12px 28px rgba(11,111,102,0.30)';
             }}
             onMouseLeave={e => {
               if (!item.isCta) return;
               e.currentTarget.style.background = '#0b6f66';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 24px rgba(13,148,136,0.24)';
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(11,111,102,0.24)';
             }}
           >{item.label}</button>
         ))}
@@ -101,7 +101,7 @@ const NavBar = ({ activeSection, onNav }) => {
 
 const HeroGraphic = () => (
   <svg width="320" height="300" viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="160" cy="150" r="130" fill="rgba(13,148,136,0.06)"/>
+    <circle cx="160" cy="150" r="130" fill="rgba(11,111,102,0.06)"/>
     <polygon points="160,20 275,82.5 275,207.5 160,270 45,207.5 45,82.5" fill="none" stroke="rgba(20,184,166,0.25)" strokeWidth="1.5"/>
     <polygon points="160,42 255,96 255,204 160,258 65,204 65,96" fill="none" stroke="rgba(20,184,166,0.35)" strokeWidth="1.5"/>
     <polygon points="160,65 235,108.5 235,196.5 160,240 85,196.5 85,108.5" fill="none" stroke="#0b6f66" strokeWidth="2" opacity="0.5"/>
@@ -114,8 +114,8 @@ const HeroGraphic = () => (
     <path d="M120 230 L160 100 L200 140" stroke="#14b8a6" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
     <path d="M188 110 L205 138 L220 118" stroke="#14b8a6" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
     <circle cx="220" cy="115" r="5" fill="#0b6f66"/>
-    <circle cx="160" cy="138" r="18" stroke="#0b6f66" strokeWidth="3" fill="rgba(13,148,136,0.1)"/>
-    <path d="M150 150 L150 165 L170 165 L170 150 Z" stroke="#0b6f66" strokeWidth="2.5" fill="rgba(13,148,136,0.2)" strokeLinejoin="round"/>
+    <circle cx="160" cy="138" r="18" stroke="#0b6f66" strokeWidth="3" fill="rgba(11,111,102,0.1)"/>
+    <path d="M150 150 L150 165 L170 165 L170 150 Z" stroke="#0b6f66" strokeWidth="2.5" fill="rgba(11,111,102,0.2)" strokeLinejoin="round"/>
     <circle cx="160" cy="155" r="3" fill="#0b6f66"/>
   </svg>
 );
@@ -149,7 +149,7 @@ const HeroSection = ({ onNav }) => {
           fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16,
           background: '#0b6f66', color: '#fff', padding: '14px 36px',
           borderRadius: 9999, border: 'none', cursor: 'pointer',
-          boxShadow: '0 6px 24px rgba(13,148,136,0.35)',
+          boxShadow: '0 6px 24px rgba(11,111,102,0.35)',
           transition: 'background 200ms, transform 150ms',
         }}
           onMouseEnter={e => { e.currentTarget.style.background='#095e57'; e.currentTarget.style.transform='translateY(-2px)'; }}

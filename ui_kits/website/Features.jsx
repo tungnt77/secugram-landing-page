@@ -98,7 +98,7 @@ const IntegrationsStripV2 = () => (
     <style>{`
       .sg-integrations {
         background:
-          radial-gradient(circle at 18% 12%, rgba(13,148,136,0.07), transparent 30%),
+          radial-gradient(circle at 18% 12%, rgba(11,111,102,0.07), transparent 30%),
           radial-gradient(circle at 82% 18%, rgba(30,58,95,0.05), transparent 26%),
           #ffffff;
         padding: 96px 80px 104px;
@@ -155,7 +155,7 @@ const IntegrationsStripV2 = () => (
         left: -28px;
         right: -28px;
         top: 50%;
-        border-top: 2px dotted rgba(13,148,136,0.35);
+        border-top: 2px dotted rgba(11,111,102,0.35);
         transform: translateY(-1px);
         pointer-events: none;
         z-index: 0;
@@ -177,7 +177,7 @@ const IntegrationsStripV2 = () => (
       }
       .sg-int-chip:hover {
         transform: translateY(-3px);
-        border-color: rgba(13,148,136,0.35);
+        border-color: rgba(11,111,102,0.35);
         box-shadow: 0 12px 26px rgba(30,58,95,0.14), 0 0 0 4px #ffffff;
       }
       .sg-int-chip img {
@@ -263,7 +263,7 @@ const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, ac
         overflow: 'hidden',
         boxShadow: hovered ? `0 12px 40px rgba(30,58,95,0.13)` : '0 2px 10px rgba(30,58,95,0.06)',
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-        transition: 'all 260ms ease',
+        transition: 'transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease',
         display: 'flex', flexDirection: 'column',
       }}
     >
@@ -282,7 +282,7 @@ const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, ac
             background: hovered ? 'rgba(255,255,255,0.18)' : '#fff',
             border: `1.5px solid ${hovered ? 'rgba(255,255,255,0.35)' : accent+'33'}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'all 260ms',
+            transition: 'background 260ms ease, border-color 260ms ease',
             flexShrink: 0,
           }}>
             <IconMap name={icon} color={hovered ? '#fff' : accent} size={22} />
@@ -414,7 +414,7 @@ const FeaturesSection = () => (
               fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 13,
               background: '#0b6f66', color: '#fff', padding: '11px 24px',
               borderRadius: 9999, border: 'none', cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(13,148,136,0.28)',
+              boxShadow: '0 4px 16px rgba(11,111,102,0.28)',
               whiteSpace: 'nowrap',
             }}
             onMouseEnter={e => e.currentTarget.style.background = '#095e57'}
