@@ -15,7 +15,7 @@ const FEATURES = [
     ],
     stat: 'Cloud · Hybrid', statLabel: 'On-prem ready',
     accent: '#0b6f66',
-    href: 'services/secure-infrastructure-platform.html',
+    href: 'services/cloud-security.html',
   },
   {
     icon: 'shield',
