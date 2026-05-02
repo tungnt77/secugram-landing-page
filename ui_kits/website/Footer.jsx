@@ -11,10 +11,9 @@ const FOOTER_NAV_LINKS = [
 ];
 
 const FOOTER_SERVICE_LINKS = [
+  { label: 'Secure Infrastructure Platform', href: 'services/secure-infrastructure-platform.html' },
   { label: 'Security Architecture', href: 'services/security-architecture.html' },
   { label: 'Managed Detection & Response', href: 'services/managed-detection-response.html' },
-  { label: 'Cloud Security', href: 'services/cloud-security.html' },
-  { label: 'SOC Operations', href: 'services/soc-operations.html' },
 ];
 
 const footerButtonStyle = {
@@ -116,8 +115,8 @@ const FooterSection = ({ onNav }) => (
             maxWidth: 390,
             margin: '0 0 22px',
           }}>
-            Cybersecurity services for growing businesses: security architecture,
-            managed detection, response, and cloud security operations.
+            Cybersecurity services for growing businesses: secure infrastructure,
+            security architecture, and managed detection and response.
           </p>
           <div style={{
             display: 'grid',

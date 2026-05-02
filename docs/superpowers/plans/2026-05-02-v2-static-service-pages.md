@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add lightweight static service detail pages for Secugram's first V2 content-depth slice.
+**Goal:** Add lightweight static service detail pages for Secugram's first V2 content-depth slice, aligned to the three Core Services cards.
 
 **Architecture:** Keep the existing GitHub Pages/static website model. Add standalone HTML service pages under `ui_kits/website/services/`, share a focused CSS file, and link to those pages from the homepage Core Services cards and footer service links.
 
@@ -34,16 +34,15 @@ Expected: FAIL because service pages and links do not exist yet.
 
 **Files:**
 - Create: `ui_kits/website/services/service-page.css`
+- Create: `ui_kits/website/services/secure-infrastructure-platform.html`
 - Create: `ui_kits/website/services/security-architecture.html`
 - Create: `ui_kits/website/services/managed-detection-response.html`
-- Create: `ui_kits/website/services/cloud-security.html`
-- Create: `ui_kits/website/services/soc-operations.html`
 
 - [ ] **Step 1: Add shared page CSS**
 
 Create a clean Secugram-aligned layout: white/navy sections, Montserrat/Open Sans typography, teal CTAs, responsive cards.
 
-- [ ] **Step 2: Add four service pages**
+- [ ] **Step 2: Add three service pages**
 
 Each page must include a header, hero, problem section, Secugram approach, deliverables, process/operations section, and CTA back to contact.
 
@@ -60,7 +59,7 @@ Expected: pages exist, but homepage/footer link checks still fail until Task 3.
 - [ ] **Step 1: Add service page URLs to Core Services cards**
 
 Map:
-- Secure Infrastructure Platform -> `services/cloud-security.html`
+- Secure Infrastructure Platform -> `services/secure-infrastructure-platform.html`
 - Security Architecture & Consulting -> `services/security-architecture.html`
 - Managed Detection & Response -> `services/managed-detection-response.html`
 
@@ -70,7 +69,7 @@ Keep the visual treatment but make it a real anchor.
 
 - [ ] **Step 3: Update footer service links**
 
-Map footer service links directly to the four service pages.
+Map footer service links directly to the three service pages.
 
 ### Task 4: Verification and Publish
 
@@ -86,7 +85,7 @@ $node='C:\Users\Asus\.cache\codex-runtimes\codex-primary-runtime\dependencies\no
 & $node tools\verify-service-pages.mjs
 ```
 
-Expected: `Verified 4 service pages and homepage links.`
+Expected: `Verified 3 service pages and homepage links.`
 
 - [ ] **Step 2: Run JSX transform check**
 
