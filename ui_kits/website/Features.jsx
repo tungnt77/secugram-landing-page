@@ -15,6 +15,7 @@ const FEATURES = [
     ],
     stat: 'Cloud · Hybrid', statLabel: 'On-prem ready',
     accent: '#0b6f66',
+    href: 'services/cloud-security.html',
   },
   {
     icon: 'shield',
@@ -30,6 +31,7 @@ const FEATURES = [
     ],
     stat: 'ISO · PCI', statLabel: 'Aligned',
     accent: '#1e6fa5',
+    href: 'services/security-architecture.html',
   },
   {
     icon: 'activity',
@@ -45,6 +47,7 @@ const FEATURES = [
     ],
     stat: '24/7', statLabel: 'SOC Coverage',
     accent: '#0b6f66',
+    href: 'services/managed-detection-response.html',
   },
 ];
 
@@ -250,7 +253,7 @@ const CheckIcon = ({ color }) => (
   </svg>
 );
 
-const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, accent }) => {
+const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, accent, href }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
     <div
@@ -345,10 +348,11 @@ const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, ac
 
       {/* Footer CTA */}
       <div style={{ padding: '18px 26px 22px', marginTop: 'auto' }}>
-        <div style={{
+        <a href={href} style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12,
           color: accent, cursor: 'pointer',
+          textDecoration: 'none',
           borderBottom: `1.5px solid ${accent}44`, paddingBottom: 1,
           transition: 'border-color 200ms',
         }}>
@@ -357,7 +361,7 @@ const FeatureCard = ({ icon, tag, title, body, capabilities, stat, statLabel, ac
             <polyline points="5 12 19 12" stroke={accent} strokeWidth="2.5" strokeLinecap="round"/>
             <polyline points="13 6 19 12 13 18" stroke={accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </div>
+        </a>
       </div>
     </div>
   );

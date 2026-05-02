@@ -11,10 +11,10 @@ const FOOTER_NAV_LINKS = [
 ];
 
 const FOOTER_SERVICE_LINKS = [
-  { label: 'Security Architecture', target: 'services' },
-  { label: 'Managed Detection & Response', target: 'services' },
-  { label: 'Cloud Security', target: 'services' },
-  { label: 'SOC Operations', target: 'security-ops' },
+  { label: 'Security Architecture', href: 'services/security-architecture.html' },
+  { label: 'Managed Detection & Response', href: 'services/managed-detection-response.html' },
+  { label: 'Cloud Security', href: 'services/cloud-security.html' },
+  { label: 'SOC Operations', href: 'services/soc-operations.html' },
 ];
 
 const footerButtonStyle = {
@@ -31,17 +31,31 @@ const footerButtonStyle = {
   lineHeight: 1.45,
 };
 
-const FooterLinkButton = ({ label, target, onNav }) => (
-  <button
-    type="button"
-    onClick={() => onNav(target)}
-    style={footerButtonStyle}
-    onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; }}
-    onMouseLeave={e => { e.currentTarget.style.color = '#b6c5d8'; }}
-  >
-    {label}
-  </button>
-);
+const FooterLinkButton = ({ label, target, href, onNav }) => {
+  const sharedEvents = {
+    onMouseEnter: e => { e.currentTarget.style.color = '#ffffff'; },
+    onMouseLeave: e => { e.currentTarget.style.color = '#b6c5d8'; },
+  };
+
+  if (href) {
+    return (
+      <a href={href} style={{ ...footerButtonStyle, textDecoration: 'none' }} {...sharedEvents}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => onNav(target)}
+      style={footerButtonStyle}
+      {...sharedEvents}
+    >
+      {label}
+    </button>
+  );
+};
 
 const FooterColumnTitle = ({ children }) => (
   <div style={{
