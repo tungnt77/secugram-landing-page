@@ -25,15 +25,15 @@ const bundles = [
   },
   {
     outFile: path.join(outDir, "secure-infrastructure.js"),
-    sources: ["Footer.jsx", "services/SecureInfrastructure.jsx", "services/SecureInfrastructureApp.jsx"],
+    sources: ["Footer.jsx", "services/serviceTokens.jsx", "services/SecureInfrastructure.jsx", "services/SecureInfrastructureApp.jsx"],
   },
   {
     outFile: path.join(outDir, "security-architecture.js"),
-    sources: ["Footer.jsx", "services/SecurityArchitecture.jsx", "services/SecurityArchitectureApp.jsx"],
+    sources: ["Footer.jsx", "services/serviceTokens.jsx", "services/SecurityArchitecture.jsx", "services/SecurityArchitectureApp.jsx"],
   },
   {
     outFile: path.join(outDir, "managed-detection-response.js"),
-    sources: ["Footer.jsx", "services/ManagedDetectionResponse.jsx", "services/ManagedDetectionResponseApp.jsx"],
+    sources: ["Footer.jsx", "services/serviceTokens.jsx", "services/ManagedDetectionResponse.jsx", "services/ManagedDetectionResponseApp.jsx"],
   },
 ];
 

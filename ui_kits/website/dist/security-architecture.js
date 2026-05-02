@@ -42,7 +42,8 @@ const FooterLogoMark = () => React.createElement("svg", {
   strokeLinejoin: "round"
 }));
 const FooterSection = ({
-  onNav
+  onNav,
+  rootPath = ''
 }) => React.createElement("footer", {
   "data-tw-footer": true,
   style: {
@@ -63,19 +64,22 @@ const FooterSection = ({
     gap: 48,
     marginBottom: 56
   }
-}, React.createElement("div", null, React.createElement("div", {
+}, React.createElement("div", null, React.createElement("a", {
+  href: rootPath + 'index.html',
   style: {
     display: 'flex',
     alignItems: 'center',
     gap: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    textDecoration: 'none'
   }
 }, React.createElement(FooterLogoMark, null), React.createElement("span", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 18,
-    letterSpacing: '0.12em'
+    letterSpacing: '0.12em',
+    color: '#fff'
   }
 }, "SECUGRAM")), React.createElement("p", {
   style: {
@@ -141,22 +145,21 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Product"), ['Features', 'Pricing', 'Security', 'Changelog'].map(l => React.createElement("button", {
-  key: l,
-  type: "button",
+}, "Services"), [['Secure Infrastructure', rootPath + 'services/secure-infrastructure.html'], ['Security Architecture', rootPath + 'services/security-architecture.html'], ['Managed Detection & Response', rootPath + 'services/managed-detection-response.html']].map(([label, href]) => React.createElement("a", {
+  key: label,
+  href: href,
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
     color: '#94a3b8',
     marginBottom: 12,
-    cursor: 'pointer',
     display: 'block',
-    background: 'transparent',
-    border: 0,
-    padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textDecoration: 'none',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -166,9 +169,10 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Company"), ['About', 'Blog', 'Careers', 'Contact'].map(l => React.createElement("button", {
-  key: l,
+}, "Company"), [['Why Secugram', 'why-secugram'], ['How We Work', 'methodology'], ['Security Ops', 'security-ops'], ['Contact', 'contact']].map(([label, target]) => React.createElement("button", {
+  key: label,
   type: "button",
+  onClick: () => onNav && onNav(target),
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
@@ -179,9 +183,12 @@ const FooterSection = ({
     background: 'transparent',
     border: 0,
     padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textAlign: 'left',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -244,9 +251,32 @@ const FooterSection = ({
 Object.assign(window, {
   FooterSection
 });
+const SG_SERVICE_TOKENS = Object.freeze({
+  surface: '#fbfdfe',
+  sectionMist: '#f9fafb',
+  mintSurface: '#f0fdf9',
+  architectureSurface: '#eff6ff',
+  borderCloud: '#e5e7eb',
+  headingNavy: '#1e3a5f',
+  bodySlate: '#4b5563',
+  mutedSlate: '#6b7280',
+  mutedReadable: '#64748b',
+  deepCommand: '#0d1b2e',
+  commandInk: '#061726',
+  securityTeal: '#0b6f66',
+  securityTealHover: '#095e57',
+  signalTeal: '#14b8a6',
+  signalReadable: '#087568',
+  signalSubtle: 'rgba(11,111,102,0.14)',
+  alertBlue: '#1e6fa5',
+  alertBlueReadable: '#2563eb',
+  textOnDark: '#f8fbff',
+  softTextOnDark: 'rgba(255,255,255,0.72)',
+  mutedTextOnDark: 'rgba(255,255,255,0.64)'
+});
 const SAIconMap = ({
   name,
-  color = '#1e6fa5',
+  color = SG_SERVICE_TOKENS.alertBlue,
   size = 24
 }) => {
   const s = {
@@ -431,7 +461,7 @@ const SAIconMap = ({
 };
 const SACheckBullet = ({
   text,
-  accent = '#1e6fa5'
+  accent = SG_SERVICE_TOKENS.alertBlue
 }) => React.createElement("div", {
   style: {
     display: 'flex',
@@ -466,7 +496,7 @@ const SACheckBullet = ({
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14.5,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.55
   }
 }, text));
@@ -486,7 +516,7 @@ const SAHero = ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    background: '#fff'
+    background: SG_SERVICE_TOKENS.surface
   }
 }, React.createElement("div", {
   style: {
@@ -501,7 +531,7 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     textDecoration: 'none'
   }
 }, "Home"), React.createElement("svg", {
@@ -511,7 +541,7 @@ const SAHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -520,7 +550,7 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280'
+    color: SG_SERVICE_TOKENS.mutedSlate
   }
 }, "Services"), React.createElement("svg", {
   width: "12",
@@ -529,7 +559,7 @@ const SAHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -538,7 +568,7 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#1e6fa5'
+    color: SG_SERVICE_TOKENS.alertBlue
   }
 }, "Security Architecture")), React.createElement("div", {
   style: {
@@ -552,7 +582,7 @@ const SAHero = ({
     width: 32,
     height: 32,
     borderRadius: 8,
-    background: '#eff6ff',
+    background: SG_SERVICE_TOKENS.architectureSurface,
     border: '1px solid #bfdbfe',
     display: 'flex',
     alignItems: 'center',
@@ -566,7 +596,7 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#1e6fa5',
+    color: SG_SERVICE_TOKENS.alertBlue,
     letterSpacing: '0.14em',
     textTransform: 'uppercase'
   }
@@ -575,20 +605,20 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 46,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     lineHeight: 1.07,
     letterSpacing: '-0.025em',
     margin: '0 0 22px'
   }
 }, "Security Architecture", React.createElement("br", null), React.createElement("span", {
   style: {
-    color: '#1e6fa5'
+    color: SG_SERVICE_TOKENS.alertBlue
   }
 }, "& Consulting")), React.createElement("p", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 17,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.65,
     margin: '0 0 36px',
     maxWidth: 480
@@ -606,8 +636,8 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#1e6fa5',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.alertBlue,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '13px 32px',
     borderRadius: 9999,
     border: 'none',
@@ -620,7 +650,7 @@ const SAHero = ({
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#1e6fa5';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.alertBlue;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request a Consultation"), React.createElement("a", {
@@ -629,7 +659,7 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 14,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -653,14 +683,14 @@ const SAHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 17,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.01em'
   }
 }, val), React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     marginTop: 3
   }
 }, label))))), React.createElement("div", {
@@ -719,7 +749,7 @@ const SAArchitectureDiagram = () => {
   }, {
     label: 'Risk & Compliance Alignment',
     sub: 'ISO 27001 · PCI-DSS · NIST',
-    color: '#1e6fa5',
+    color: SG_SERVICE_TOKENS.alertBlue,
     icon: 'check'
   }, {
     label: 'Gap Analysis & Assessment',
@@ -732,7 +762,7 @@ const SAArchitectureDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: 'rgba(59,130,246,0.7)',
+      color: SG_SERVICE_TOKENS.alertBlueReadable,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 22,
@@ -781,7 +811,7 @@ const SAArchitectureDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12.5,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       marginBottom: 2
     }
   }, layer.label), React.createElement("div", {
@@ -820,7 +850,7 @@ const SAArchitectureDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#60a5fa',
+      color: SG_SERVICE_TOKENS.alertBlueReadable,
       letterSpacing: '0.04em'
     }
   }, mode)))));
@@ -857,12 +887,12 @@ const SACapabilities = () => {
     body: 'From a current-state assessment to a prioritised multi-year roadmap — we give you a clear, costed plan for building your security programme in the right order, at the right pace.',
     tags: ['Roadmap', 'Prioritisation', 'Maturity Model']
   }];
-  const accent = '#1e6fa5';
+  const accent = SG_SERVICE_TOKENS.alertBlue;
   return React.createElement("div", {
     id: "sa-capabilities",
     className: "svc-section",
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -890,7 +920,7 @@ const SACapabilities = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -898,7 +928,7 @@ const SACapabilities = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 560,
       margin: '0 auto',
       lineHeight: 1.6
@@ -928,8 +958,8 @@ const SACapabilityCard = ({
     onMouseEnter: () => setHov(true),
     onMouseLeave: () => setHov(false),
     style: {
-      background: '#fff',
-      border: `1px solid ${hov ? accent : '#e5e7eb'}`,
+      background: SG_SERVICE_TOKENS.surface,
+      border: `1px solid ${hov ? accent : SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       padding: '28px 26px',
       boxShadow: hov ? `0 12px 36px ${accent}1e` : '0 2px 10px rgba(30,58,95,0.05)',
@@ -944,7 +974,7 @@ const SACapabilityCard = ({
       width: 48,
       height: 48,
       borderRadius: 11,
-      background: hov ? accent : '#eff6ff',
+      background: hov ? accent : SG_SERVICE_TOKENS.architectureSurface,
       border: `1.5px solid ${hov ? accent : '#bfdbfe'}`,
       display: 'flex',
       alignItems: 'center',
@@ -954,14 +984,14 @@ const SACapabilityCard = ({
     }
   }, React.createElement(SAIconMap, {
     name: icon,
-    color: hov ? '#fff' : accent,
+    color: hov ? SG_SERVICE_TOKENS.textOnDark : accent,
     size: 20
   })), React.createElement("div", null, React.createElement("h3", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       margin: '0 0 8px',
       lineHeight: 1.3
     }
@@ -969,7 +999,7 @@ const SACapabilityCard = ({
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.65,
       margin: 0
     }
@@ -987,7 +1017,7 @@ const SACapabilityCard = ({
       fontWeight: 600,
       fontSize: 10,
       color: accent,
-      background: '#eff6ff',
+      background: SG_SERVICE_TOKENS.architectureSurface,
       border: '1px solid #bfdbfe',
       borderRadius: 9999,
       padding: '3px 10px',
@@ -997,7 +1027,7 @@ const SACapabilityCard = ({
 };
 const SAEngagementTypes = () => {
   const [active, setActive] = React.useState(0);
-  const accent = '#1e6fa5';
+  const accent = SG_SERVICE_TOKENS.alertBlue;
   const types = [{
     label: 'Point Assessment',
     title: 'Security Risk Assessment',
@@ -1023,7 +1053,7 @@ const SAEngagementTypes = () => {
   const t = types[active];
   return React.createElement("div", {
     style: {
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1051,7 +1081,7 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -1059,7 +1089,7 @@ const SAEngagementTypes = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 520,
       margin: '0 auto',
       lineHeight: 1.6
@@ -1069,7 +1099,7 @@ const SAEngagementTypes = () => {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
       gap: 0,
-      border: '1px solid #e5e7eb',
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       overflow: 'hidden',
       marginBottom: 40
@@ -1078,9 +1108,9 @@ const SAEngagementTypes = () => {
     key: tp.label,
     onClick: () => setActive(i),
     style: {
-      background: active === i ? accent : '#fff',
+      background: active === i ? accent : SG_SERVICE_TOKENS.surface,
       border: 'none',
-      borderRight: i < types.length - 1 ? '1px solid #e5e7eb' : 'none',
+      borderRight: i < types.length - 1 ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : 'none',
       padding: '24px 28px',
       cursor: 'pointer',
       textAlign: 'left',
@@ -1091,7 +1121,7 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 11,
-      color: active === i ? 'rgba(255,255,255,0.7)' : '#94a3b8',
+      color: active === i ? 'rgba(255,255,255,0.7)' : SG_SERVICE_TOKENS.mutedReadable,
       letterSpacing: '0.12em',
       marginBottom: 6
     }
@@ -1100,14 +1130,14 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 14,
-      color: active === i ? '#fff' : '#1e3a5f',
+      color: active === i ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.headingNavy,
       marginBottom: 4
     }
   }, tp.label), React.createElement("div", {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 11,
-      color: active === i ? 'rgba(255,255,255,0.65)' : '#6b7280'
+      color: active === i ? 'rgba(255,255,255,0.65)' : SG_SERVICE_TOKENS.mutedSlate
     }
   }, tp.duration)))), React.createElement("div", {
     className: "svc-grid-2",
@@ -1122,7 +1152,7 @@ const SAEngagementTypes = () => {
       display: 'inline-flex',
       alignItems: 'center',
       gap: 10,
-      background: '#eff6ff',
+      background: SG_SERVICE_TOKENS.architectureSurface,
       border: '1px solid #bfdbfe',
       borderRadius: 9999,
       padding: '5px 14px',
@@ -1148,7 +1178,7 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 28,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.015em',
       margin: '0 0 16px'
     }
@@ -1156,14 +1186,14 @@ const SAEngagementTypes = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.7,
       margin: '0 0 24px'
     }
   }, t.summary), React.createElement("div", {
     style: {
-      background: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.sectionMist,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 10,
       padding: '16px 18px'
     }
@@ -1172,7 +1202,7 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       letterSpacing: '0.12em',
       textTransform: 'uppercase',
       marginBottom: 8
@@ -1181,13 +1211,13 @@ const SAEngagementTypes = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       lineHeight: 1.55
     }
   }, t.ideal))), React.createElement("div", {
     style: {
-      background: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.sectionMist,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 12,
       padding: '28px',
       display: 'flex',
@@ -1199,7 +1229,7 @@ const SAEngagementTypes = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 4
@@ -1258,7 +1288,7 @@ const SAFrameworks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#60a5fa',
+      color: SG_SERVICE_TOKENS.alertBlueReadable,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -1268,7 +1298,7 @@ const SAFrameworks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -1301,7 +1331,7 @@ const SAFrameworks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 22,
-      color: '#60a5fa',
+      color: SG_SERVICE_TOKENS.alertBlueReadable,
       marginBottom: 8,
       letterSpacing: '-0.01em'
     }
@@ -1338,7 +1368,7 @@ const SAFrameworks = () => {
       width: 6,
       height: 6,
       borderRadius: '50%',
-      background: '#60a5fa',
+      background: SG_SERVICE_TOKENS.alertBlueReadable,
       marginTop: 6,
       flexShrink: 0
     }
@@ -1352,10 +1382,10 @@ const SAFrameworks = () => {
   }, c)))))))));
 };
 const SAWhyItMatters = () => {
-  const accent = '#1e6fa5';
+  const accent = SG_SERVICE_TOKENS.alertBlue;
   return React.createElement("div", {
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1397,8 +1427,8 @@ const SAWhyItMatters = () => {
   }].map(s => React.createElement("div", {
     key: s.val,
     style: {
-      background: '#fff',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.surface,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       padding: '28px 24px',
       boxShadow: '0 2px 12px rgba(30,58,95,0.06)'
@@ -1408,7 +1438,7 @@ const SAWhyItMatters = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 30,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       marginBottom: 6
     }
@@ -1416,7 +1446,7 @@ const SAWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 13.5,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.5,
       marginBottom: 10
     }
@@ -1424,7 +1454,7 @@ const SAWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 11,
-      color: '#9ca3af'
+      color: SG_SERVICE_TOKENS.mutedReadable
     }
   }, s.sub)))), React.createElement("div", null, React.createElement("div", {
     style: {
@@ -1441,7 +1471,7 @@ const SAWhyItMatters = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 38,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 22px',
       lineHeight: 1.1
@@ -1450,7 +1480,7 @@ const SAWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.7,
       margin: '0 0 32px'
     }
@@ -1469,7 +1499,7 @@ const SAServiceCTA = ({
   onContact
 }) => React.createElement("div", {
   style: {
-    background: '#fff',
+    background: SG_SERVICE_TOKENS.surface,
     padding: '96px 80px'
   }
 }, React.createElement("div", {
@@ -1503,19 +1533,19 @@ const SAServiceCTA = ({
 }, React.createElement("polygon", {
   points: "50,6 88,28 88,72 50,94 12,72 12,28",
   fill: "none",
-  stroke: "#1e6fa5",
+  stroke: SG_SERVICE_TOKENS.alertBlue,
   strokeWidth: "1.5"
 }), React.createElement("polygon", {
   points: "50,18 80,36 80,64 50,82 20,64 20,36",
   fill: "none",
-  stroke: "#1e6fa5",
+  stroke: SG_SERVICE_TOKENS.alertBlue,
   strokeWidth: "1.2"
 })), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#60a5fa',
+    color: SG_SERVICE_TOKENS.alertBlueReadable,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 16
@@ -1525,7 +1555,7 @@ const SAServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 36,
-    color: '#fff',
+    color: SG_SERVICE_TOKENS.textOnDark,
     letterSpacing: '-0.02em',
     margin: '0 0 16px',
     lineHeight: 1.15
@@ -1551,8 +1581,8 @@ const SAServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#1e6fa5',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.alertBlue,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '14px 36px',
     borderRadius: 9999,
     border: 'none',
@@ -1566,7 +1596,7 @@ const SAServiceCTA = ({
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#1e6fa5';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.alertBlue;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request Free Consultation"), React.createElement("a", {
@@ -1582,7 +1612,7 @@ const SAServiceCTA = ({
 }, "Or email security@secugram.io")))));
 const SARelatedServices = () => React.createElement("div", {
   style: {
-    background: '#f9fafb',
+    background: SG_SERVICE_TOKENS.sectionMist,
     padding: '60px 80px'
   }
 }, React.createElement("div", {
@@ -1595,7 +1625,7 @@ const SARelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 24
@@ -1611,13 +1641,13 @@ const SARelatedServices = () => React.createElement("div", {
   title: 'Secure Infrastructure Platform',
   body: 'Hardened cloud, hybrid, and on-prem environments with integrated 24/7 monitoring.',
   href: 'secure-infrastructure.html',
-  accent: '#0b6f66'
+  accent: SG_SERVICE_TOKENS.securityTeal
 }, {
   tag: 'MDR',
   title: 'Managed Detection & Response',
   body: '24/7 SOC monitoring, incident response, forensics, and threat hunting.',
   href: 'managed-detection-response.html',
-  accent: '#0b6f66'
+  accent: SG_SERVICE_TOKENS.securityTeal
 }].map(svc => React.createElement("a", {
   key: svc.title,
   href: svc.href,
@@ -1625,8 +1655,8 @@ const SARelatedServices = () => React.createElement("div", {
     display: 'flex',
     gap: 20,
     alignItems: 'flex-start',
-    background: '#fff',
-    border: '1px solid #e5e7eb',
+    background: SG_SERVICE_TOKENS.surface,
+    border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
     borderRadius: 12,
     padding: '22px 24px',
     textDecoration: 'none',
@@ -1637,7 +1667,7 @@ const SARelatedServices = () => React.createElement("div", {
     e.currentTarget.style.boxShadow = `0 4px 20px ${svc.accent}1a`;
   },
   onMouseLeave: e => {
-    e.currentTarget.style.borderColor = '#e5e7eb';
+    e.currentTarget.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
     e.currentTarget.style.boxShadow = 'none';
   }
 }, React.createElement("div", {
@@ -1658,7 +1688,7 @@ const SARelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     margin: '5px 0 6px',
     lineHeight: 1.3
   }
@@ -1666,7 +1696,7 @@ const SARelatedServices = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 13.5,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     lineHeight: 1.55
   }
 }, svc.body)), React.createElement(SAIconMap, {
@@ -1684,7 +1714,7 @@ const SAContactSection = () => {
   const [sent, setSent] = React.useState(false);
   return React.createElement("div", {
     style: {
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1702,7 +1732,7 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e6fa5',
+      color: SG_SERVICE_TOKENS.alertBlue,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -1712,7 +1742,7 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 36,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       marginBottom: 14
     }
@@ -1720,12 +1750,12 @@ const SAContactSection = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.6
     }
   }, "Tell us about your current environment and security goals. Email us at ", React.createElement("span", {
     style: {
-      color: '#1e6fa5',
+      color: SG_SERVICE_TOKENS.alertBlue,
       fontWeight: 600
     }
   }, "security@secugram.io"), " or fill in the form.")), sent ? React.createElement("div", {
@@ -1738,8 +1768,8 @@ const SAContactSection = () => {
       width: 64,
       height: 64,
       borderRadius: '50%',
-      background: '#eff6ff',
-      border: '2px solid #1e6fa5',
+      background: SG_SERVICE_TOKENS.architectureSurface,
+      border: `2px solid ${SG_SERVICE_TOKENS.alertBlue}`,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -1750,7 +1780,7 @@ const SAContactSection = () => {
     height: "28",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#1e6fa5",
+    stroke: SG_SERVICE_TOKENS.alertBlue,
     strokeWidth: "2.5",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -1761,13 +1791,13 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 22,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       marginBottom: 10
     }
   }, "Message Sent!"), React.createElement("div", {
     style: {
       fontFamily: "'Open Sans',sans-serif",
-      color: '#6b7280'
+      color: SG_SERVICE_TOKENS.mutedSlate
     }
   }, "We'll be in touch within one business day.")) : React.createElement("form", {
     onSubmit: e => {
@@ -1794,7 +1824,7 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -1813,19 +1843,19 @@ const SAContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#1e6fa5';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.alertBlue;
       e.target.style.boxShadow = '0 0 0 3px rgba(30,111,165,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })))), React.createElement("div", null, React.createElement("label", {
@@ -1834,7 +1864,7 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -1852,19 +1882,19 @@ const SAContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#1e6fa5';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.alertBlue;
       e.target.style.boxShadow = '0 0 0 3px rgba(30,111,165,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("div", null, React.createElement("label", {
@@ -1873,7 +1903,7 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -1890,20 +1920,20 @@ const SAContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none',
       resize: 'vertical'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#1e6fa5';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.alertBlue;
       e.target.style.boxShadow = '0 0 0 3px rgba(30,111,165,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("button", {
@@ -1912,8 +1942,8 @@ const SAContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      background: '#1e6fa5',
-      color: '#fff',
+      background: SG_SERVICE_TOKENS.alertBlue,
+      color: SG_SERVICE_TOKENS.textOnDark,
       padding: '14px 0',
       borderRadius: 9999,
       border: 'none',
@@ -1922,11 +1952,12 @@ const SAContactSection = () => {
       transition: 'background 200ms'
     },
     onMouseEnter: e => e.currentTarget.style.background = '#1a5f8e',
-    onMouseLeave: e => e.currentTarget.style.background = '#1e6fa5'
+    onMouseLeave: e => e.currentTarget.style.background = SG_SERVICE_TOKENS.alertBlue
   }, "Send Message"))));
 };
 const SANavBar = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const el = document.getElementById('sa-scroll');
     if (!el) return;
@@ -1934,14 +1965,31 @@ const SANavBar = () => {
     el.addEventListener('scroll', handler);
     return () => el.removeEventListener('scroll', handler);
   }, []);
+  const navItems = [{
+    label: 'Home',
+    href: '../index.html'
+  }, {
+    label: 'Why Secugram',
+    href: '../index.html#why-secugram'
+  }, {
+    label: 'How We Work',
+    href: '../index.html#methodology'
+  }, {
+    label: 'Services',
+    href: '../index.html#services',
+    active: true
+  }, {
+    label: 'Security Ops',
+    href: '../index.html#security-ops'
+  }];
   return React.createElement("nav", {
-    className: "svc-nav",
+    "data-tw-nav": true,
     style: {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: '#fff',
-      borderBottom: scrolled ? '1px solid #e5e7eb' : '1px solid transparent',
+      background: SG_SERVICE_TOKENS.surface,
+      borderBottom: scrolled ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : '1px solid transparent',
       boxShadow: scrolled ? '0 2px 12px rgba(30,58,95,0.08)' : 'none',
       transition: 'background 250ms ease, border-color 250ms ease, box-shadow 250ms ease',
       display: 'flex',
@@ -1951,60 +1999,63 @@ const SANavBar = () => {
       height: 72
     }
   }, React.createElement("a", {
-    className: "svc-nav-brand",
     href: "../index.html",
+    className: "sg-logo-button",
+    "aria-label": "Secugram home",
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 10,
-      textDecoration: 'none'
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 46,
-      height: 32,
-      overflow: 'hidden',
-      flexShrink: 0
+      textDecoration: 'none',
+      border: 0,
+      background: 'transparent',
+      padding: 0
     }
   }, React.createElement("img", {
-    src: "../secugram-logo.png",
+    src: "../long_logo.png",
     alt: "Secugram",
+    width: "300",
+    height: "83",
+    decoding: "async",
     style: {
-      width: 46,
+      width: 186,
       height: 'auto',
       display: 'block'
     }
-  })), React.createElement("span", {
-    style: {
-      fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 20,
-      color: '#1e3a5f',
-      letterSpacing: '0.12em'
-    }
-  }, "SECUGRAM")), React.createElement("div", {
-    className: "svc-nav-links",
+  })), React.createElement("button", {
+    className: "sg-menu-toggle",
+    type: "button",
+    "aria-label": menuOpen ? 'Close navigation menu' : 'Open navigation menu',
+    "aria-expanded": menuOpen,
+    onClick: () => setMenuOpen(v => !v)
+  }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)), React.createElement("div", {
+    className: "sg-nav-links",
+    "data-open": menuOpen ? 'true' : 'false',
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 36
+      gap: 24
     }
-  }, [['Home', '../index.html'], ['Services', '#'], ['Pricing', '../index.html#pricing'], ['Contact', '../index.html#contact']].map(([label, href]) => React.createElement("a", {
-    key: label,
-    className: "svc-nav-link",
-    href: href,
+  }, navItems.map(item => React.createElement("a", {
+    key: item.label,
+    href: item.href,
+    className: "sg-nav-link",
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
-      fontSize: 14,
-      color: label === 'Services' ? '#1e3a5f' : '#6b7280',
+      fontSize: 13,
+      color: item.active ? SG_SERVICE_TOKENS.headingNavy : SG_SERVICE_TOKENS.mutedSlate,
       textDecoration: 'none',
+      borderBottom: item.active ? `2px solid ${SG_SERVICE_TOKENS.securityTeal}` : '2px solid transparent',
       paddingBottom: 2,
-      borderBottom: label === 'Services' ? '2px solid #1e6fa5' : '2px solid transparent',
-      transition: 'color 200ms'
+      transition: 'color 200ms, border-color 200ms',
+      whiteSpace: 'nowrap'
     }
-  }, label)), React.createElement("button", {
-    onClick: () => {
+  }, item.label)), React.createElement("a", {
+    href: "#sa-contact",
+    className: "sg-nav-link sg-nav-cta",
+    onClick: e => {
+      e.preventDefault();
+      setMenuOpen(false);
       const el = document.getElementById('sa-contact');
       const sc = document.getElementById('sa-scroll');
       if (el && sc) sc.scrollTo({
@@ -2014,20 +2065,28 @@ const SANavBar = () => {
     },
     style: {
       fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 14,
-      background: '#1e6fa5',
-      color: '#fff',
-      padding: '10px 24px',
+      fontWeight: 600,
+      fontSize: 13,
+      color: SG_SERVICE_TOKENS.textOnDark,
+      background: SG_SERVICE_TOKENS.securityTeal,
+      textDecoration: 'none',
       borderRadius: 9999,
-      border: 'none',
-      cursor: 'pointer',
-      boxShadow: '0 4px 16px rgba(30,111,165,0.28)',
-      transition: 'background 200ms'
+      padding: '11px 26px',
+      boxShadow: '0 10px 24px rgba(11,111,102,0.24)',
+      transition: 'color 200ms, background 200ms, transform 150ms, box-shadow 200ms',
+      whiteSpace: 'nowrap'
     },
-    onMouseEnter: e => e.currentTarget.style.background = '#1a5f8e',
-    onMouseLeave: e => e.currentTarget.style.background = '#1e6fa5'
-  }, "Get Started")));
+    onMouseEnter: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
+      e.currentTarget.style.transform = 'translateY(-1px)';
+      e.currentTarget.style.boxShadow = '0 12px 28px rgba(11,111,102,0.30)';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 10px 24px rgba(11,111,102,0.24)';
+    }
+  }, "Contact us")));
 };
 const SecurityArchitecturePage = () => {
   const scrollToContact = () => {
@@ -2045,7 +2104,7 @@ const SecurityArchitecturePage = () => {
       height: '100vh',
       overflowY: 'auto',
       scrollBehavior: 'smooth',
-      background: '#fff'
+      background: SG_SERVICE_TOKENS.surface
     }
   }, React.createElement(SANavBar, null), React.createElement("main", null, React.createElement(SAHero, {
     onContact: scrollToContact
@@ -2054,7 +2113,8 @@ const SecurityArchitecturePage = () => {
   }, React.createElement(SAContactSection, null))), React.createElement(FooterSection, {
     onNav: section => {
       window.location.href = `../index.html#${section}`;
-    }
+    },
+    rootPath: "../"
   }));
 };
 Object.assign(window, {

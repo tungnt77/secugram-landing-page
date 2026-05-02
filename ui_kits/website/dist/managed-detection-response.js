@@ -42,7 +42,8 @@ const FooterLogoMark = () => React.createElement("svg", {
   strokeLinejoin: "round"
 }));
 const FooterSection = ({
-  onNav
+  onNav,
+  rootPath = ''
 }) => React.createElement("footer", {
   "data-tw-footer": true,
   style: {
@@ -63,19 +64,22 @@ const FooterSection = ({
     gap: 48,
     marginBottom: 56
   }
-}, React.createElement("div", null, React.createElement("div", {
+}, React.createElement("div", null, React.createElement("a", {
+  href: rootPath + 'index.html',
   style: {
     display: 'flex',
     alignItems: 'center',
     gap: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    textDecoration: 'none'
   }
 }, React.createElement(FooterLogoMark, null), React.createElement("span", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 18,
-    letterSpacing: '0.12em'
+    letterSpacing: '0.12em',
+    color: '#fff'
   }
 }, "SECUGRAM")), React.createElement("p", {
   style: {
@@ -141,22 +145,21 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Product"), ['Features', 'Pricing', 'Security', 'Changelog'].map(l => React.createElement("button", {
-  key: l,
-  type: "button",
+}, "Services"), [['Secure Infrastructure', rootPath + 'services/secure-infrastructure.html'], ['Security Architecture', rootPath + 'services/security-architecture.html'], ['Managed Detection & Response', rootPath + 'services/managed-detection-response.html']].map(([label, href]) => React.createElement("a", {
+  key: label,
+  href: href,
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
     color: '#94a3b8',
     marginBottom: 12,
-    cursor: 'pointer',
     display: 'block',
-    background: 'transparent',
-    border: 0,
-    padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textDecoration: 'none',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -166,9 +169,10 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Company"), ['About', 'Blog', 'Careers', 'Contact'].map(l => React.createElement("button", {
-  key: l,
+}, "Company"), [['Why Secugram', 'why-secugram'], ['How We Work', 'methodology'], ['Security Ops', 'security-ops'], ['Contact', 'contact']].map(([label, target]) => React.createElement("button", {
+  key: label,
   type: "button",
+  onClick: () => onNav && onNav(target),
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
@@ -179,9 +183,12 @@ const FooterSection = ({
     background: 'transparent',
     border: 0,
     padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textAlign: 'left',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -244,9 +251,32 @@ const FooterSection = ({
 Object.assign(window, {
   FooterSection
 });
+const SG_SERVICE_TOKENS = Object.freeze({
+  surface: '#fbfdfe',
+  sectionMist: '#f9fafb',
+  mintSurface: '#f0fdf9',
+  architectureSurface: '#eff6ff',
+  borderCloud: '#e5e7eb',
+  headingNavy: '#1e3a5f',
+  bodySlate: '#4b5563',
+  mutedSlate: '#6b7280',
+  mutedReadable: '#64748b',
+  deepCommand: '#0d1b2e',
+  commandInk: '#061726',
+  securityTeal: '#0b6f66',
+  securityTealHover: '#095e57',
+  signalTeal: '#14b8a6',
+  signalReadable: '#087568',
+  signalSubtle: 'rgba(11,111,102,0.14)',
+  alertBlue: '#1e6fa5',
+  alertBlueReadable: '#2563eb',
+  textOnDark: '#f8fbff',
+  softTextOnDark: 'rgba(255,255,255,0.72)',
+  mutedTextOnDark: 'rgba(255,255,255,0.64)'
+});
 const MDRIconMap = ({
   name,
-  color = '#0b6f66',
+  color = SG_SERVICE_TOKENS.securityTeal,
   size = 24
 }) => {
   const s = {
@@ -450,7 +480,7 @@ const MDRIconMap = ({
 };
 const MDRCheckBullet = ({
   text,
-  accent = '#0b6f66'
+  accent = SG_SERVICE_TOKENS.securityTeal
 }) => React.createElement("div", {
   style: {
     display: 'flex',
@@ -485,7 +515,7 @@ const MDRCheckBullet = ({
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14.5,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.55
   }
 }, text));
@@ -505,7 +535,7 @@ const MDRHero = ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    background: '#fff'
+    background: SG_SERVICE_TOKENS.surface
   }
 }, React.createElement("div", {
   style: {
@@ -520,7 +550,7 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     textDecoration: 'none'
   }
 }, "Home"), React.createElement("svg", {
@@ -530,7 +560,7 @@ const MDRHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -539,7 +569,7 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280'
+    color: SG_SERVICE_TOKENS.mutedSlate
   }
 }, "Services"), React.createElement("svg", {
   width: "12",
@@ -548,7 +578,7 @@ const MDRHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -557,7 +587,7 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#0b6f66'
+    color: SG_SERVICE_TOKENS.securityTeal
   }
 }, "Managed Detection & Response")), React.createElement("div", {
   style: {
@@ -571,7 +601,7 @@ const MDRHero = ({
     width: 32,
     height: 32,
     borderRadius: 8,
-    background: '#f0fdf9',
+    background: SG_SERVICE_TOKENS.mintSurface,
     border: '1px solid #ccfbf1',
     display: 'flex',
     alignItems: 'center',
@@ -585,7 +615,7 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase'
   }
@@ -594,20 +624,20 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 46,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     lineHeight: 1.07,
     letterSpacing: '-0.025em',
     margin: '0 0 22px'
   }
 }, "Managed Detection", React.createElement("br", null), React.createElement("span", {
   style: {
-    color: '#0b6f66'
+    color: SG_SERVICE_TOKENS.securityTeal
   }
 }, "& Response")), React.createElement("p", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 17,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.65,
     margin: '0 0 36px',
     maxWidth: 480
@@ -625,8 +655,8 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#0b6f66',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.securityTeal,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '13px 32px',
     borderRadius: 9999,
     border: 'none',
@@ -635,11 +665,11 @@ const MDRHero = ({
     transition: 'background 200ms, transform 150ms'
   },
   onMouseEnter: e => {
-    e.currentTarget.style.background = '#095e57';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#0b6f66';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request Free Assessment"), React.createElement("a", {
@@ -648,7 +678,7 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 14,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -672,14 +702,14 @@ const MDRHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 22,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.01em'
   }
 }, val), React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     marginTop: 3
   }
 }, label))))), React.createElement("div", {
@@ -729,7 +759,7 @@ const MDRSOCVisual = () => {
     time: '00:04',
     sev: 'LOW',
     msg: 'Successful auth from new IP — reviewed',
-    color: '#14b8a6'
+    color: SG_SERVICE_TOKENS.signalTeal
   }, {
     time: '00:11',
     sev: 'MED',
@@ -744,7 +774,7 @@ const MDRSOCVisual = () => {
     time: '00:23',
     sev: 'LOW',
     msg: 'Patch compliance check completed',
-    color: '#14b8a6'
+    color: SG_SERVICE_TOKENS.signalTeal
   }, {
     time: '00:31',
     sev: 'MED',
@@ -764,7 +794,7 @@ const MDRSOCVisual = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: 'rgba(20,184,166,0.7)',
+      color: SG_SERVICE_TOKENS.signalReadable,
       letterSpacing: '0.14em',
       textTransform: 'uppercase'
     }
@@ -779,7 +809,7 @@ const MDRSOCVisual = () => {
       width: 7,
       height: 7,
       borderRadius: '50%',
-      background: '#14b8a6',
+      background: SG_SERVICE_TOKENS.signalTeal,
       boxShadow: '0 0 8px #14b8a6'
     }
   }), React.createElement("span", {
@@ -787,7 +817,7 @@ const MDRSOCVisual = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
       fontSize: 10,
-      color: '#14b8a6'
+      color: SG_SERVICE_TOKENS.signalTeal
     }
   }, "MONITORING ACTIVE"))), React.createElement("div", {
     style: {
@@ -843,7 +873,7 @@ const MDRSOCVisual = () => {
       gap: 8,
       marginBottom: 16
     }
-  }, [['MTTD', '< 15 min', '#14b8a6'], ['MTTR', '< 1 hour', '#0b6f66'], ['Uptime', '99.99%', '#14b8a6']].map(([label, val, col]) => React.createElement("div", {
+  }, [['MTTD', '< 15 min', SG_SERVICE_TOKENS.signalTeal], ['MTTR', '< 1 hour', SG_SERVICE_TOKENS.securityTeal], ['Uptime', '99.99%', SG_SERVICE_TOKENS.signalTeal]].map(([label, val, col]) => React.createElement("div", {
     key: label,
     style: {
       background: 'rgba(255,255,255,0.05)',
@@ -873,7 +903,7 @@ const MDRSOCVisual = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
       fontSize: 10,
-      color: 'rgba(20,184,166,0.5)',
+      color: SG_SERVICE_TOKENS.signalReadable,
       letterSpacing: '0.10em',
       textTransform: 'uppercase',
       textAlign: 'center',
@@ -894,7 +924,7 @@ const MDRSOCVisual = () => {
     opacity: "0.5"
   }), React.createElement("polyline", {
     points: "0,14 60,14 85,10 110,18 135,10 160,18 185,14 380,14",
-    stroke: "#0b6f66",
+    stroke: SG_SERVICE_TOKENS.securityTeal,
     strokeWidth: "1",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -902,7 +932,7 @@ const MDRSOCVisual = () => {
   })));
 };
 const MDRCapabilities = () => {
-  const accent = '#0b6f66';
+  const accent = SG_SERVICE_TOKENS.securityTeal;
   const caps = [{
     icon: 'eye',
     title: '24/7 SOC Threat Monitoring',
@@ -938,7 +968,7 @@ const MDRCapabilities = () => {
     id: "mdr-capabilities",
     className: "svc-section",
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -966,7 +996,7 @@ const MDRCapabilities = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -974,7 +1004,7 @@ const MDRCapabilities = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 560,
       margin: '0 auto',
       lineHeight: 1.6
@@ -1004,8 +1034,8 @@ const MDRCapabilityCard = ({
     onMouseEnter: () => setHov(true),
     onMouseLeave: () => setHov(false),
     style: {
-      background: '#fff',
-      border: `1px solid ${hov ? accent : '#e5e7eb'}`,
+      background: SG_SERVICE_TOKENS.surface,
+      border: `1px solid ${hov ? accent : SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       padding: '28px 26px',
       boxShadow: hov ? '0 12px 36px rgba(11,111,102,0.12)' : '0 2px 10px rgba(30,58,95,0.05)',
@@ -1020,7 +1050,7 @@ const MDRCapabilityCard = ({
       width: 48,
       height: 48,
       borderRadius: 11,
-      background: hov ? accent : '#f0fdf9',
+      background: hov ? accent : SG_SERVICE_TOKENS.mintSurface,
       border: `1.5px solid ${hov ? accent : '#ccfbf1'}`,
       display: 'flex',
       alignItems: 'center',
@@ -1030,14 +1060,14 @@ const MDRCapabilityCard = ({
     }
   }, React.createElement(MDRIconMap, {
     name: icon,
-    color: hov ? '#fff' : accent,
+    color: hov ? SG_SERVICE_TOKENS.textOnDark : accent,
     size: 20
   })), React.createElement("div", null, React.createElement("h3", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       margin: '0 0 8px',
       lineHeight: 1.3
     }
@@ -1045,7 +1075,7 @@ const MDRCapabilityCard = ({
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.65,
       margin: 0
     }
@@ -1063,7 +1093,7 @@ const MDRCapabilityCard = ({
       fontWeight: 600,
       fontSize: 10,
       color: accent,
-      background: '#f0fdf9',
+      background: SG_SERVICE_TOKENS.mintSurface,
       border: '1px solid #a7f3d0',
       borderRadius: 9999,
       padding: '3px 10px',
@@ -1073,7 +1103,7 @@ const MDRCapabilityCard = ({
 };
 const MDRSOCLifecycle = () => {
   const [active, setActive] = React.useState(0);
-  const accent = '#0b6f66';
+  const accent = SG_SERVICE_TOKENS.securityTeal;
   const phases = [{
     label: 'Monitor',
     title: 'Continuous Monitoring',
@@ -1108,7 +1138,7 @@ const MDRSOCLifecycle = () => {
   const ph = phases[active];
   return React.createElement("div", {
     style: {
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1136,7 +1166,7 @@ const MDRSOCLifecycle = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -1144,7 +1174,7 @@ const MDRSOCLifecycle = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 520,
       margin: '0 auto',
       lineHeight: 1.6
@@ -1154,7 +1184,7 @@ const MDRSOCLifecycle = () => {
       display: 'grid',
       gridTemplateColumns: 'repeat(5, 1fr)',
       gap: 0,
-      border: '1px solid #e5e7eb',
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       overflow: 'hidden',
       marginBottom: 40
@@ -1163,9 +1193,9 @@ const MDRSOCLifecycle = () => {
     key: ph.label,
     onClick: () => setActive(i),
     style: {
-      background: active === i ? accent : '#fff',
+      background: active === i ? accent : SG_SERVICE_TOKENS.surface,
       border: 'none',
-      borderRight: i < phases.length - 1 ? '1px solid #e5e7eb' : 'none',
+      borderRight: i < phases.length - 1 ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : 'none',
       padding: '20px 16px',
       cursor: 'pointer',
       textAlign: 'center',
@@ -1180,7 +1210,7 @@ const MDRSOCLifecycle = () => {
       width: 36,
       height: 36,
       borderRadius: '50%',
-      background: active === i ? 'rgba(255,255,255,0.18)' : '#f0fdf9',
+      background: active === i ? 'rgba(255,255,255,0.18)' : SG_SERVICE_TOKENS.mintSurface,
       border: `1.5px solid ${active === i ? 'rgba(255,255,255,0.3)' : '#ccfbf1'}`,
       display: 'flex',
       alignItems: 'center',
@@ -1189,14 +1219,14 @@ const MDRSOCLifecycle = () => {
     }
   }, React.createElement(MDRIconMap, {
     name: ph.icon,
-    color: active === i ? '#fff' : accent,
+    color: active === i ? SG_SERVICE_TOKENS.textOnDark : accent,
     size: 16
   })), React.createElement("div", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: active === i ? '#fff' : '#1e3a5f'
+      color: active === i ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.headingNavy
     }
   }, ph.label)))), React.createElement("div", {
     className: "svc-grid-2",
@@ -1211,7 +1241,7 @@ const MDRSOCLifecycle = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 28,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.015em',
       margin: '0 0 16px'
     }
@@ -1219,14 +1249,14 @@ const MDRSOCLifecycle = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.7,
       margin: 0
     }
   }, ph.desc)), React.createElement("div", {
     style: {
-      background: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.sectionMist,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 12,
       padding: '28px',
       display: 'flex',
@@ -1238,7 +1268,7 @@ const MDRSOCLifecycle = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 4
@@ -1308,12 +1338,12 @@ const MDR_SEV_STYLE = {
   'HUNTING': {
     bg: 'rgba(20,184,166,0.12)',
     border: 'rgba(20,184,166,0.35)',
-    col: '#14b8a6'
+    col: SG_SERVICE_TOKENS.signalTeal
   },
   'RESOLVED': {
     bg: 'rgba(20,184,166,0.12)',
     border: 'rgba(20,184,166,0.35)',
-    col: '#14b8a6'
+    col: SG_SERVICE_TOKENS.signalTeal
   }
 };
 const MDRThreatCoverage = () => {
@@ -1362,7 +1392,7 @@ const MDRThreatCoverage = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#14b8a6',
+      color: SG_SERVICE_TOKENS.signalTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -1372,7 +1402,7 @@ const MDRThreatCoverage = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       letterSpacing: '-0.02em',
       margin: '0 0 16px',
       lineHeight: 1.1
@@ -1409,7 +1439,7 @@ const MDRThreatCoverage = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 17,
-      color: '#14b8a6'
+      color: SG_SERVICE_TOKENS.signalTeal
     }
   }, val), React.createElement("span", {
     style: {
@@ -1467,7 +1497,7 @@ const MDRThreatCoverage = () => {
       width: 7,
       height: 7,
       borderRadius: '50%',
-      background: '#14b8a6',
+      background: SG_SERVICE_TOKENS.signalTeal,
       boxShadow: '0 0 6px #14b8a6'
     }
   }), React.createElement("span", {
@@ -1475,7 +1505,7 @@ const MDRThreatCoverage = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#14b8a6',
+      color: SG_SERVICE_TOKENS.signalTeal,
       letterSpacing: '0.08em'
     }
   }, "LIVE"))), React.createElement("div", {
@@ -1546,13 +1576,13 @@ const MDRThreatCoverage = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#14b8a6'
+      color: SG_SERVICE_TOKENS.signalTeal
     }
   }, "\u203A"), React.createElement("div", {
     style: {
       width: 8,
       height: 15,
-      background: '#14b8a6',
+      background: SG_SERVICE_TOKENS.signalTeal,
       opacity: pulse % 2 === 0 ? 1 : 0,
       transition: 'opacity 300ms',
       borderRadius: 1
@@ -1584,10 +1614,10 @@ const MDRThreatCoverage = () => {
     col: '#ef4444'
   }, {
     label: 'Threat Hunting',
-    col: '#14b8a6'
+    col: SG_SERVICE_TOKENS.signalTeal
   }, {
     label: 'DDoS',
-    col: '#14b8a6'
+    col: SG_SERVICE_TOKENS.signalTeal
   }].map(({
     label,
     col
@@ -1615,7 +1645,7 @@ const MDRThreatCoverage = () => {
 };
 const MDRWhyItMatters = () => React.createElement("div", {
   style: {
-    background: '#f9fafb',
+    background: SG_SERVICE_TOKENS.sectionMist,
     padding: '96px 80px'
   }
 }, React.createElement("div", {
@@ -1636,7 +1666,7 @@ const MDRWhyItMatters = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 16
@@ -1646,7 +1676,7 @@ const MDRWhyItMatters = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 38,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.02em',
     margin: '0 0 22px',
     lineHeight: 1.1
@@ -1655,7 +1685,7 @@ const MDRWhyItMatters = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 16,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.7,
     margin: '0 0 32px'
   }
@@ -1694,8 +1724,8 @@ const MDRWhyItMatters = () => React.createElement("div", {
 }].map(s => React.createElement("div", {
   key: s.val,
   style: {
-    background: '#fff',
-    border: '1px solid #e5e7eb',
+    background: SG_SERVICE_TOKENS.surface,
+    border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
     borderRadius: 14,
     padding: '28px 24px',
     boxShadow: '0 2px 12px rgba(30,58,95,0.06)'
@@ -1705,7 +1735,7 @@ const MDRWhyItMatters = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 26,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.02em',
     marginBottom: 6
   }
@@ -1713,7 +1743,7 @@ const MDRWhyItMatters = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 13.5,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.5,
     marginBottom: 10
   }
@@ -1721,12 +1751,12 @@ const MDRWhyItMatters = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 11,
-    color: '#9ca3af'
+    color: SG_SERVICE_TOKENS.mutedReadable
   }
 }, s.src)))))));
 const MDRTooling = () => React.createElement("div", {
   style: {
-    background: '#fff',
+    background: SG_SERVICE_TOKENS.surface,
     padding: '80px 80px'
   }
 }, React.createElement("div", {
@@ -1746,7 +1776,7 @@ const MDRTooling = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 12
@@ -1756,7 +1786,7 @@ const MDRTooling = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 36,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.02em',
     margin: 0
   }
@@ -1764,7 +1794,7 @@ const MDRTooling = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 15,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     maxWidth: 380,
     lineHeight: 1.6,
     margin: 0
@@ -1793,10 +1823,10 @@ const MDRTooling = () => React.createElement("div", {
 }) => React.createElement("div", {
   key: cat,
   style: {
-    border: '1px solid #e5e7eb',
+    border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
     borderRadius: 12,
     padding: '24px 22px',
-    background: '#fff',
+    background: SG_SERVICE_TOKENS.surface,
     boxShadow: '0 2px 8px rgba(30,58,95,0.05)'
   }
 }, React.createElement("div", {
@@ -1804,7 +1834,7 @@ const MDRTooling = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 14,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     marginBottom: 16
   }
 }, cat), React.createElement("div", {
@@ -1825,21 +1855,21 @@ const MDRTooling = () => React.createElement("div", {
     width: 5,
     height: 5,
     borderRadius: '50%',
-    background: '#0b6f66',
+    background: SG_SERVICE_TOKENS.securityTeal,
     flexShrink: 0
   }
 }), React.createElement("span", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 13,
-    color: '#4b5563'
+    color: SG_SERVICE_TOKENS.bodySlate
   }
 }, t)))))))));
 const MDRServiceCTA = ({
   onContact
 }) => React.createElement("div", {
   style: {
-    background: '#f9fafb',
+    background: SG_SERVICE_TOKENS.sectionMist,
     padding: '96px 80px'
   }
 }, React.createElement("div", {
@@ -1873,19 +1903,19 @@ const MDRServiceCTA = ({
 }, React.createElement("polygon", {
   points: "50,6 88,28 88,72 50,94 12,72 12,28",
   fill: "none",
-  stroke: "#0b6f66",
+  stroke: SG_SERVICE_TOKENS.securityTeal,
   strokeWidth: "1.5"
 }), React.createElement("polygon", {
   points: "50,18 80,36 80,64 50,82 20,64 20,36",
   fill: "none",
-  stroke: "#0b6f66",
+  stroke: SG_SERVICE_TOKENS.securityTeal,
   strokeWidth: "1.2"
 })), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#14b8a6',
+    color: SG_SERVICE_TOKENS.signalTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 16
@@ -1895,7 +1925,7 @@ const MDRServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 36,
-    color: '#fff',
+    color: SG_SERVICE_TOKENS.textOnDark,
     letterSpacing: '-0.02em',
     margin: '0 0 16px',
     lineHeight: 1.15
@@ -1921,8 +1951,8 @@ const MDRServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#0b6f66',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.securityTeal,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '14px 36px',
     borderRadius: 9999,
     border: 'none',
@@ -1932,11 +1962,11 @@ const MDRServiceCTA = ({
     whiteSpace: 'nowrap'
   },
   onMouseEnter: e => {
-    e.currentTarget.style.background = '#095e57';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#0b6f66';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request Free Assessment"), React.createElement("a", {
@@ -1952,7 +1982,7 @@ const MDRServiceCTA = ({
 }, "Or email security@secugram.io")))));
 const MDRRelatedServices = () => React.createElement("div", {
   style: {
-    background: '#fff',
+    background: SG_SERVICE_TOKENS.surface,
     padding: '60px 80px'
   }
 }, React.createElement("div", {
@@ -1965,7 +1995,7 @@ const MDRRelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 24
@@ -1981,13 +2011,13 @@ const MDRRelatedServices = () => React.createElement("div", {
   title: 'Secure Infrastructure Platform',
   body: 'Hardened cloud, hybrid, and on-prem environments with integrated 24/7 monitoring.',
   href: 'secure-infrastructure.html',
-  accent: '#0b6f66'
+  accent: SG_SERVICE_TOKENS.securityTeal
 }, {
   tag: 'Consulting',
   title: 'Security Architecture & Consulting',
   body: 'Risk assessment, Zero Trust design, compliance alignment, and executive advisory.',
   href: 'security-architecture.html',
-  accent: '#1e6fa5'
+  accent: SG_SERVICE_TOKENS.alertBlue
 }].map(svc => React.createElement("a", {
   key: svc.title,
   href: svc.href,
@@ -1995,8 +2025,8 @@ const MDRRelatedServices = () => React.createElement("div", {
     display: 'flex',
     gap: 20,
     alignItems: 'flex-start',
-    background: '#f9fafb',
-    border: '1px solid #e5e7eb',
+    background: SG_SERVICE_TOKENS.sectionMist,
+    border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
     borderRadius: 12,
     padding: '22px 24px',
     textDecoration: 'none',
@@ -2007,7 +2037,7 @@ const MDRRelatedServices = () => React.createElement("div", {
     e.currentTarget.style.boxShadow = `0 4px 20px ${svc.accent}1a`;
   },
   onMouseLeave: e => {
-    e.currentTarget.style.borderColor = '#e5e7eb';
+    e.currentTarget.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
     e.currentTarget.style.boxShadow = 'none';
   }
 }, React.createElement("div", {
@@ -2028,7 +2058,7 @@ const MDRRelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     margin: '5px 0 6px',
     lineHeight: 1.3
   }
@@ -2036,7 +2066,7 @@ const MDRRelatedServices = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 13.5,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     lineHeight: 1.55
   }
 }, svc.body)), React.createElement(MDRIconMap, {
@@ -2054,7 +2084,7 @@ const MDRContactSection = () => {
   const [sent, setSent] = React.useState(false);
   return React.createElement("div", {
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -2072,7 +2102,7 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -2082,7 +2112,7 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 36,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       marginBottom: 14
     }
@@ -2090,12 +2120,12 @@ const MDRContactSection = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.6
     }
   }, "Tell us about your environment and current detection gaps. Email us at ", React.createElement("span", {
     style: {
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       fontWeight: 600
     }
   }, "security@secugram.io"), " or fill in the form.")), sent ? React.createElement("div", {
@@ -2108,8 +2138,8 @@ const MDRContactSection = () => {
       width: 64,
       height: 64,
       borderRadius: '50%',
-      background: '#f0fdf9',
-      border: '2px solid #0b6f66',
+      background: SG_SERVICE_TOKENS.mintSurface,
+      border: `2px solid ${SG_SERVICE_TOKENS.securityTeal}`,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -2120,7 +2150,7 @@ const MDRContactSection = () => {
     height: "28",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#0b6f66",
+    stroke: SG_SERVICE_TOKENS.securityTeal,
     strokeWidth: "2.5",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -2131,13 +2161,13 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 22,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       marginBottom: 10
     }
   }, "Message Sent!"), React.createElement("div", {
     style: {
       fontFamily: "'Open Sans',sans-serif",
-      color: '#6b7280'
+      color: SG_SERVICE_TOKENS.mutedSlate
     }
   }, "We'll be in touch within one business day.")) : React.createElement("form", {
     onSubmit: e => {
@@ -2164,7 +2194,7 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2183,19 +2213,19 @@ const MDRContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })))), React.createElement("div", null, React.createElement("label", {
@@ -2204,7 +2234,7 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2222,19 +2252,19 @@ const MDRContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("div", null, React.createElement("label", {
@@ -2243,7 +2273,7 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2260,20 +2290,20 @@ const MDRContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none',
       resize: 'vertical'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("button", {
@@ -2282,8 +2312,8 @@ const MDRContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      background: '#0b6f66',
-      color: '#fff',
+      background: SG_SERVICE_TOKENS.securityTeal,
+      color: SG_SERVICE_TOKENS.textOnDark,
       padding: '14px 0',
       borderRadius: 9999,
       border: 'none',
@@ -2291,12 +2321,13 @@ const MDRContactSection = () => {
       boxShadow: '0 4px 20px rgba(11,111,102,0.30)',
       transition: 'background 200ms'
     },
-    onMouseEnter: e => e.currentTarget.style.background = '#095e57',
-    onMouseLeave: e => e.currentTarget.style.background = '#0b6f66'
+    onMouseEnter: e => e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover,
+    onMouseLeave: e => e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal
   }, "Send Message"))));
 };
 const MDRNavBar = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const el = document.getElementById('mdr-scroll');
     if (!el) return;
@@ -2304,14 +2335,31 @@ const MDRNavBar = () => {
     el.addEventListener('scroll', handler);
     return () => el.removeEventListener('scroll', handler);
   }, []);
+  const navItems = [{
+    label: 'Home',
+    href: '../index.html'
+  }, {
+    label: 'Why Secugram',
+    href: '../index.html#why-secugram'
+  }, {
+    label: 'How We Work',
+    href: '../index.html#methodology'
+  }, {
+    label: 'Services',
+    href: '../index.html#services',
+    active: true
+  }, {
+    label: 'Security Ops',
+    href: '../index.html#security-ops'
+  }];
   return React.createElement("nav", {
-    className: "svc-nav",
+    "data-tw-nav": true,
     style: {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: '#fff',
-      borderBottom: scrolled ? '1px solid #e5e7eb' : '1px solid transparent',
+      background: SG_SERVICE_TOKENS.surface,
+      borderBottom: scrolled ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : '1px solid transparent',
       boxShadow: scrolled ? '0 2px 12px rgba(30,58,95,0.08)' : 'none',
       transition: 'background 250ms ease, border-color 250ms ease, box-shadow 250ms ease',
       display: 'flex',
@@ -2321,60 +2369,63 @@ const MDRNavBar = () => {
       height: 72
     }
   }, React.createElement("a", {
-    className: "svc-nav-brand",
     href: "../index.html",
+    className: "sg-logo-button",
+    "aria-label": "Secugram home",
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 10,
-      textDecoration: 'none'
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 46,
-      height: 32,
-      overflow: 'hidden',
-      flexShrink: 0
+      textDecoration: 'none',
+      border: 0,
+      background: 'transparent',
+      padding: 0
     }
   }, React.createElement("img", {
-    src: "../secugram-logo.png",
+    src: "../long_logo.png",
     alt: "Secugram",
+    width: "300",
+    height: "83",
+    decoding: "async",
     style: {
-      width: 46,
+      width: 186,
       height: 'auto',
       display: 'block'
     }
-  })), React.createElement("span", {
-    style: {
-      fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 20,
-      color: '#1e3a5f',
-      letterSpacing: '0.12em'
-    }
-  }, "SECUGRAM")), React.createElement("div", {
-    className: "svc-nav-links",
+  })), React.createElement("button", {
+    className: "sg-menu-toggle",
+    type: "button",
+    "aria-label": menuOpen ? 'Close navigation menu' : 'Open navigation menu',
+    "aria-expanded": menuOpen,
+    onClick: () => setMenuOpen(v => !v)
+  }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)), React.createElement("div", {
+    className: "sg-nav-links",
+    "data-open": menuOpen ? 'true' : 'false',
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 36
+      gap: 24
     }
-  }, [['Home', '../index.html'], ['Services', '#'], ['Pricing', '../index.html#pricing'], ['Contact', '../index.html#contact']].map(([label, href]) => React.createElement("a", {
-    key: label,
-    className: "svc-nav-link",
-    href: href,
+  }, navItems.map(item => React.createElement("a", {
+    key: item.label,
+    href: item.href,
+    className: "sg-nav-link",
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
-      fontSize: 14,
-      color: label === 'Services' ? '#1e3a5f' : '#6b7280',
+      fontSize: 13,
+      color: item.active ? SG_SERVICE_TOKENS.headingNavy : SG_SERVICE_TOKENS.mutedSlate,
       textDecoration: 'none',
+      borderBottom: item.active ? `2px solid ${SG_SERVICE_TOKENS.securityTeal}` : '2px solid transparent',
       paddingBottom: 2,
-      borderBottom: label === 'Services' ? '2px solid #0b6f66' : '2px solid transparent',
-      transition: 'color 200ms'
+      transition: 'color 200ms, border-color 200ms',
+      whiteSpace: 'nowrap'
     }
-  }, label)), React.createElement("button", {
-    onClick: () => {
+  }, item.label)), React.createElement("a", {
+    href: "#mdr-contact",
+    className: "sg-nav-link sg-nav-cta",
+    onClick: e => {
+      e.preventDefault();
+      setMenuOpen(false);
       const el = document.getElementById('mdr-contact');
       const sc = document.getElementById('mdr-scroll');
       if (el && sc) sc.scrollTo({
@@ -2384,20 +2435,28 @@ const MDRNavBar = () => {
     },
     style: {
       fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 14,
-      background: '#0b6f66',
-      color: '#fff',
-      padding: '10px 24px',
+      fontWeight: 600,
+      fontSize: 13,
+      color: SG_SERVICE_TOKENS.textOnDark,
+      background: SG_SERVICE_TOKENS.securityTeal,
+      textDecoration: 'none',
       borderRadius: 9999,
-      border: 'none',
-      cursor: 'pointer',
-      boxShadow: '0 4px 16px rgba(11,111,102,0.28)',
-      transition: 'background 200ms'
+      padding: '11px 26px',
+      boxShadow: '0 10px 24px rgba(11,111,102,0.24)',
+      transition: 'color 200ms, background 200ms, transform 150ms, box-shadow 200ms',
+      whiteSpace: 'nowrap'
     },
-    onMouseEnter: e => e.currentTarget.style.background = '#095e57',
-    onMouseLeave: e => e.currentTarget.style.background = '#0b6f66'
-  }, "Get Started")));
+    onMouseEnter: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
+      e.currentTarget.style.transform = 'translateY(-1px)';
+      e.currentTarget.style.boxShadow = '0 12px 28px rgba(11,111,102,0.30)';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 10px 24px rgba(11,111,102,0.24)';
+    }
+  }, "Contact us")));
 };
 const ManagedDetectionResponsePage = () => {
   const scrollToContact = () => {
@@ -2415,7 +2474,7 @@ const ManagedDetectionResponsePage = () => {
       height: '100vh',
       overflowY: 'auto',
       scrollBehavior: 'smooth',
-      background: '#fff'
+      background: SG_SERVICE_TOKENS.surface
     }
   }, React.createElement(MDRNavBar, null), React.createElement("main", null, React.createElement(MDRHero, {
     onContact: scrollToContact
@@ -2424,7 +2483,8 @@ const ManagedDetectionResponsePage = () => {
   }, React.createElement(MDRContactSection, null))), React.createElement(FooterSection, {
     onNav: section => {
       window.location.href = `../index.html#${section}`;
-    }
+    },
+    rootPath: "../"
   }));
 };
 Object.assign(window, {

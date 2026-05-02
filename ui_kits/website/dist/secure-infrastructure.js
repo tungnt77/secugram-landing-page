@@ -42,7 +42,8 @@ const FooterLogoMark = () => React.createElement("svg", {
   strokeLinejoin: "round"
 }));
 const FooterSection = ({
-  onNav
+  onNav,
+  rootPath = ''
 }) => React.createElement("footer", {
   "data-tw-footer": true,
   style: {
@@ -63,19 +64,22 @@ const FooterSection = ({
     gap: 48,
     marginBottom: 56
   }
-}, React.createElement("div", null, React.createElement("div", {
+}, React.createElement("div", null, React.createElement("a", {
+  href: rootPath + 'index.html',
   style: {
     display: 'flex',
     alignItems: 'center',
     gap: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    textDecoration: 'none'
   }
 }, React.createElement(FooterLogoMark, null), React.createElement("span", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 18,
-    letterSpacing: '0.12em'
+    letterSpacing: '0.12em',
+    color: '#fff'
   }
 }, "SECUGRAM")), React.createElement("p", {
   style: {
@@ -141,22 +145,21 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Product"), ['Features', 'Pricing', 'Security', 'Changelog'].map(l => React.createElement("button", {
-  key: l,
-  type: "button",
+}, "Services"), [['Secure Infrastructure', rootPath + 'services/secure-infrastructure.html'], ['Security Architecture', rootPath + 'services/security-architecture.html'], ['Managed Detection & Response', rootPath + 'services/managed-detection-response.html']].map(([label, href]) => React.createElement("a", {
+  key: label,
+  href: href,
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
     color: '#94a3b8',
     marginBottom: 12,
-    cursor: 'pointer',
     display: 'block',
-    background: 'transparent',
-    border: 0,
-    padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textDecoration: 'none',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -166,9 +169,10 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Company"), ['About', 'Blog', 'Careers', 'Contact'].map(l => React.createElement("button", {
-  key: l,
+}, "Company"), [['Why Secugram', 'why-secugram'], ['How We Work', 'methodology'], ['Security Ops', 'security-ops'], ['Contact', 'contact']].map(([label, target]) => React.createElement("button", {
+  key: label,
   type: "button",
+  onClick: () => onNav && onNav(target),
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
@@ -179,9 +183,12 @@ const FooterSection = ({
     background: 'transparent',
     border: 0,
     padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textAlign: 'left',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -244,9 +251,32 @@ const FooterSection = ({
 Object.assign(window, {
   FooterSection
 });
+const SG_SERVICE_TOKENS = Object.freeze({
+  surface: '#fbfdfe',
+  sectionMist: '#f9fafb',
+  mintSurface: '#f0fdf9',
+  architectureSurface: '#eff6ff',
+  borderCloud: '#e5e7eb',
+  headingNavy: '#1e3a5f',
+  bodySlate: '#4b5563',
+  mutedSlate: '#6b7280',
+  mutedReadable: '#64748b',
+  deepCommand: '#0d1b2e',
+  commandInk: '#061726',
+  securityTeal: '#0b6f66',
+  securityTealHover: '#095e57',
+  signalTeal: '#14b8a6',
+  signalReadable: '#087568',
+  signalSubtle: 'rgba(11,111,102,0.14)',
+  alertBlue: '#1e6fa5',
+  alertBlueReadable: '#2563eb',
+  textOnDark: '#f8fbff',
+  softTextOnDark: 'rgba(255,255,255,0.72)',
+  mutedTextOnDark: 'rgba(255,255,255,0.64)'
+});
 const SIPIconMap = ({
   name,
-  color = '#0b6f66',
+  color = SG_SERVICE_TOKENS.securityTeal,
   size = 24
 }) => {
   const s = {
@@ -471,7 +501,7 @@ const SIPIconMap = ({
 };
 const SIPCheckBullet = ({
   text,
-  accent = '#0b6f66'
+  accent = SG_SERVICE_TOKENS.securityTeal
 }) => React.createElement("div", {
   style: {
     display: 'flex',
@@ -506,7 +536,7 @@ const SIPCheckBullet = ({
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14.5,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.55
   }
 }, text));
@@ -526,7 +556,7 @@ const SIPHero = ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    background: '#fff'
+    background: SG_SERVICE_TOKENS.surface
   }
 }, React.createElement("div", {
   style: {
@@ -541,7 +571,7 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     textDecoration: 'none',
     letterSpacing: '0.04em'
   }
@@ -552,7 +582,7 @@ const SIPHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -561,7 +591,7 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     letterSpacing: '0.04em'
   }
 }, "Services"), React.createElement("svg", {
@@ -571,7 +601,7 @@ const SIPHero = ({
   fill: "none"
 }, React.createElement("polyline", {
   points: "9 18 15 12 9 6",
-  stroke: "#9ca3af",
+  stroke: SG_SERVICE_TOKENS.mutedReadable,
   strokeWidth: "2",
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -580,7 +610,7 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 12,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.04em'
   }
 }, "Secure Infrastructure")), React.createElement("div", {
@@ -595,7 +625,7 @@ const SIPHero = ({
     width: 32,
     height: 32,
     borderRadius: 8,
-    background: '#f0fdf9',
+    background: SG_SERVICE_TOKENS.mintSurface,
     border: '1px solid #ccfbf1',
     display: 'flex',
     alignItems: 'center',
@@ -609,7 +639,7 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase'
   }
@@ -618,20 +648,20 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 46,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     lineHeight: 1.07,
     letterSpacing: '-0.025em',
     margin: '0 0 22px'
   }
 }, "Secure Infrastructure", React.createElement("br", null), React.createElement("span", {
   style: {
-    color: '#0b6f66'
+    color: SG_SERVICE_TOKENS.securityTeal
   }
 }, "Platform")), React.createElement("p", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 17,
-    color: '#4b5563',
+    color: SG_SERVICE_TOKENS.bodySlate,
     lineHeight: 1.65,
     margin: '0 0 36px',
     maxWidth: 480
@@ -649,8 +679,8 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#0b6f66',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.securityTeal,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '13px 32px',
     borderRadius: 9999,
     border: 'none',
@@ -659,11 +689,11 @@ const SIPHero = ({
     transition: 'background 200ms, transform 150ms'
   },
   onMouseEnter: e => {
-    e.currentTarget.style.background = '#095e57';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#0b6f66';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request Assessment"), React.createElement("a", {
@@ -672,7 +702,7 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 600,
     fontSize: 14,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -696,14 +726,14 @@ const SIPHero = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 20,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     letterSpacing: '-0.01em'
   }
 }, val), React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 12,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     marginTop: 3
   }
 }, label))))), React.createElement("div", {
@@ -748,17 +778,17 @@ const SIPStackDiagram = () => {
     label: 'Business Applications',
     sub: 'Secure app layer',
     icon: 'layers',
-    color: '#14b8a6'
+    color: SG_SERVICE_TOKENS.signalTeal
   }, {
     label: 'Cloud / Hybrid Hosting',
     sub: 'AWS · Azure · GCP · On-prem',
     icon: 'cloud',
-    color: '#0b6f66'
+    color: SG_SERVICE_TOKENS.securityTeal
   }, {
     label: 'Network & Firewall',
     sub: 'Segmentation · WAF · VPN',
     icon: 'network',
-    color: '#095e57'
+    color: SG_SERVICE_TOKENS.securityTealHover
   }, {
     label: 'Endpoint & Server Hardening',
     sub: 'CIS benchmarks · EDR',
@@ -775,7 +805,7 @@ const SIPStackDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: 'rgba(20,184,166,0.7)',
+      color: SG_SERVICE_TOKENS.signalReadable,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 22,
@@ -825,7 +855,7 @@ const SIPStackDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12.5,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       marginBottom: 2
     }
   }, layer.label), React.createElement("div", {
@@ -855,7 +885,7 @@ const SIPStackDiagram = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
       fontSize: 10,
-      color: 'rgba(20,184,166,0.5)',
+      color: SG_SERVICE_TOKENS.signalReadable,
       letterSpacing: '0.10em',
       textTransform: 'uppercase',
       textAlign: 'center',
@@ -922,7 +952,7 @@ const SIPCapabilities = () => {
     id: "capabilities",
     className: "svc-section",
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -940,7 +970,7 @@ const SIPCapabilities = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -950,7 +980,7 @@ const SIPCapabilities = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -958,7 +988,7 @@ const SIPCapabilities = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 560,
       margin: '0 auto',
       lineHeight: 1.6
@@ -987,8 +1017,8 @@ const SIPCapabilityCard = ({
     onMouseEnter: () => setHov(true),
     onMouseLeave: () => setHov(false),
     style: {
-      background: '#fff',
-      border: `1px solid ${hov ? '#0b6f66' : '#e5e7eb'}`,
+      background: SG_SERVICE_TOKENS.surface,
+      border: `1px solid ${hov ? SG_SERVICE_TOKENS.securityTeal : SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       padding: '28px 26px',
       boxShadow: hov ? '0 12px 36px rgba(11,111,102,0.12)' : '0 2px 10px rgba(30,58,95,0.05)',
@@ -1003,8 +1033,8 @@ const SIPCapabilityCard = ({
       width: 48,
       height: 48,
       borderRadius: 11,
-      background: hov ? '#0b6f66' : '#f0fdf9',
-      border: `1.5px solid ${hov ? '#0b6f66' : '#ccfbf1'}`,
+      background: hov ? SG_SERVICE_TOKENS.securityTeal : SG_SERVICE_TOKENS.mintSurface,
+      border: `1.5px solid ${hov ? SG_SERVICE_TOKENS.securityTeal : '#ccfbf1'}`,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -1013,14 +1043,14 @@ const SIPCapabilityCard = ({
     }
   }, React.createElement(SIPIconMap, {
     name: icon,
-    color: hov ? '#fff' : '#0b6f66',
+    color: hov ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.securityTeal,
     size: 20
   })), React.createElement("div", null, React.createElement("h3", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       margin: '0 0 8px',
       lineHeight: 1.3
     }
@@ -1028,7 +1058,7 @@ const SIPCapabilityCard = ({
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.65,
       margin: 0
     }
@@ -1045,8 +1075,8 @@ const SIPCapabilityCard = ({
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
       fontSize: 10,
-      color: '#0b6f66',
-      background: '#f0fdf9',
+      color: SG_SERVICE_TOKENS.securityTeal,
+      background: SG_SERVICE_TOKENS.mintSurface,
       border: '1px solid #a7f3d0',
       borderRadius: 9999,
       padding: '3px 10px',
@@ -1084,7 +1114,7 @@ const SIPHowItWorks = () => {
   const ph = phases[active];
   return React.createElement("div", {
     style: {
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1102,7 +1132,7 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -1112,7 +1142,7 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -1120,7 +1150,7 @@ const SIPHowItWorks = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 17,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 520,
       margin: '0 auto',
       lineHeight: 1.6
@@ -1130,7 +1160,7 @@ const SIPHowItWorks = () => {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
       gap: 0,
-      border: '1px solid #e5e7eb',
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       overflow: 'hidden',
       marginBottom: 40
@@ -1139,9 +1169,9 @@ const SIPHowItWorks = () => {
     key: ph.num,
     onClick: () => setActive(i),
     style: {
-      background: active === i ? '#0b6f66' : '#fff',
+      background: active === i ? SG_SERVICE_TOKENS.securityTeal : SG_SERVICE_TOKENS.surface,
       border: 'none',
-      borderRight: i < phases.length - 1 ? '1px solid #e5e7eb' : 'none',
+      borderRight: i < phases.length - 1 ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : 'none',
       padding: '22px 20px',
       cursor: 'pointer',
       textAlign: 'left',
@@ -1152,7 +1182,7 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 11,
-      color: active === i ? 'rgba(255,255,255,0.7)' : '#94a3b8',
+      color: active === i ? 'rgba(255,255,255,0.7)' : SG_SERVICE_TOKENS.mutedReadable,
       letterSpacing: '0.12em',
       marginBottom: 6
     }
@@ -1161,14 +1191,14 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 13.5,
-      color: active === i ? '#fff' : '#1e3a5f',
+      color: active === i ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.headingNavy,
       lineHeight: 1.25
     }
   }, ph.title), React.createElement("div", {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 11,
-      color: active === i ? 'rgba(255,255,255,0.65)' : '#6b7280',
+      color: active === i ? 'rgba(255,255,255,0.65)' : SG_SERVICE_TOKENS.mutedSlate,
       marginTop: 4
     }
   }, ph.duration)))), React.createElement("div", {
@@ -1184,7 +1214,7 @@ const SIPHowItWorks = () => {
       display: 'inline-flex',
       alignItems: 'center',
       gap: 10,
-      background: '#f0fdf9',
+      background: SG_SERVICE_TOKENS.mintSurface,
       border: '1px solid #a7f3d0',
       borderRadius: 9999,
       padding: '5px 14px',
@@ -1195,14 +1225,14 @@ const SIPHowItWorks = () => {
       width: 7,
       height: 7,
       borderRadius: '50%',
-      background: '#0b6f66'
+      background: SG_SERVICE_TOKENS.securityTeal
     }
   }), React.createElement("span", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.10em'
     }
   }, ph.duration)), React.createElement("h3", {
@@ -1210,7 +1240,7 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 28,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.015em',
       margin: '0 0 16px'
     }
@@ -1218,14 +1248,14 @@ const SIPHowItWorks = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.7,
       margin: 0
     }
   }, ph.summary)), React.createElement("div", {
     style: {
-      background: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.sectionMist,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 12,
       padding: '28px 28px',
       display: 'flex',
@@ -1237,7 +1267,7 @@ const SIPHowItWorks = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 10,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 4
@@ -1299,7 +1329,7 @@ const SIPEnvironments = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#14b8a6',
+      color: SG_SERVICE_TOKENS.signalTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -1309,7 +1339,7 @@ const SIPEnvironments = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 40,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       letterSpacing: '-0.02em',
       margin: '0 0 16px'
     }
@@ -1342,7 +1372,7 @@ const SIPEnvironments = () => {
       width: 50,
       height: 50,
       borderRadius: 11,
-      background: env.highlight ? '#0b6f66' : 'rgba(255,255,255,0.08)',
+      background: env.highlight ? SG_SERVICE_TOKENS.securityTeal : 'rgba(255,255,255,0.08)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -1350,14 +1380,14 @@ const SIPEnvironments = () => {
     }
   }, React.createElement(SIPIconMap, {
     name: env.icon,
-    color: env.highlight ? '#fff' : '#14b8a6',
+    color: env.highlight ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.signalTeal,
     size: 22
   })), React.createElement("div", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 18,
-      color: '#fff',
+      color: SG_SERVICE_TOKENS.textOnDark,
       marginBottom: 4
     }
   }, env.label), React.createElement("div", {
@@ -1385,7 +1415,7 @@ const SIPEnvironments = () => {
       width: 6,
       height: 6,
       borderRadius: '50%',
-      background: env.highlight ? '#14b8a6' : 'rgba(20,184,166,0.5)',
+      background: env.highlight ? SG_SERVICE_TOKENS.signalTeal : SG_SERVICE_TOKENS.signalReadable,
       marginTop: 6,
       flexShrink: 0
     }
@@ -1418,7 +1448,7 @@ const SIPWhyItMatters = () => {
   }];
   return React.createElement("div", {
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -1439,7 +1469,7 @@ const SIPWhyItMatters = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 16
@@ -1449,7 +1479,7 @@ const SIPWhyItMatters = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 38,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: '0 0 22px',
       lineHeight: 1.1
@@ -1458,7 +1488,7 @@ const SIPWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.7,
       margin: '0 0 32px'
     }
@@ -1481,8 +1511,8 @@ const SIPWhyItMatters = () => {
   }, stats.map(s => React.createElement("div", {
     key: s.val,
     style: {
-      background: '#fff',
-      border: '1px solid #e5e7eb',
+      background: SG_SERVICE_TOKENS.surface,
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 14,
       padding: '28px 24px',
       boxShadow: '0 2px 12px rgba(30,58,95,0.06)'
@@ -1492,7 +1522,7 @@ const SIPWhyItMatters = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 32,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       marginBottom: 6
     }
@@ -1500,7 +1530,7 @@ const SIPWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.5,
       marginBottom: 12
     }
@@ -1508,7 +1538,7 @@ const SIPWhyItMatters = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 11,
-      color: '#9ca3af'
+      color: SG_SERVICE_TOKENS.mutedReadable
     }
   }, s.src)))))));
 };
@@ -1536,7 +1566,7 @@ const SIPCompliance = () => {
   }];
   return React.createElement("div", {
     style: {
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       padding: '80px 80px'
     }
   }, React.createElement("div", {
@@ -1556,7 +1586,7 @@ const SIPCompliance = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 11,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 12
@@ -1566,7 +1596,7 @@ const SIPCompliance = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 36,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       margin: 0
     }
@@ -1574,7 +1604,7 @@ const SIPCompliance = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 15,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       maxWidth: 380,
       lineHeight: 1.6,
       margin: 0
@@ -1588,10 +1618,10 @@ const SIPCompliance = () => {
   }, frameworks.map(fw => React.createElement("div", {
     key: fw.code,
     style: {
-      border: '1px solid #e5e7eb',
+      border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 12,
       padding: '24px 22px',
-      background: '#fff',
+      background: SG_SERVICE_TOKENS.surface,
       boxShadow: '0 2px 8px rgba(30,58,95,0.05)'
     }
   }, React.createElement("div", {
@@ -1606,15 +1636,15 @@ const SIPCompliance = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 16,
-      color: '#1e3a5f'
+      color: SG_SERVICE_TOKENS.headingNavy
     }
   }, fw.code), React.createElement("span", {
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 9,
-      color: '#0b6f66',
-      background: '#f0fdf9',
+      color: SG_SERVICE_TOKENS.securityTeal,
+      background: SG_SERVICE_TOKENS.mintSurface,
       border: '1px solid #a7f3d0',
       borderRadius: 9999,
       padding: '3px 9px',
@@ -1625,7 +1655,7 @@ const SIPCompliance = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 12,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       marginBottom: 16
     }
   }, fw.name), React.createElement("div", {
@@ -1646,7 +1676,7 @@ const SIPCompliance = () => {
       width: 5,
       height: 5,
       borderRadius: '50%',
-      background: '#0b6f66',
+      background: SG_SERVICE_TOKENS.securityTeal,
       marginTop: 6,
       flexShrink: 0
     }
@@ -1654,7 +1684,7 @@ const SIPCompliance = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 12,
-      color: '#4b5563',
+      color: SG_SERVICE_TOKENS.bodySlate,
       lineHeight: 1.45
     }
   }, item)))))))));
@@ -1663,7 +1693,7 @@ const SIPServiceCTA = ({
   onContact
 }) => React.createElement("div", {
   style: {
-    background: '#f9fafb',
+    background: SG_SERVICE_TOKENS.sectionMist,
     padding: '96px 80px'
   }
 }, React.createElement("div", {
@@ -1696,19 +1726,19 @@ const SIPServiceCTA = ({
 }, React.createElement("polygon", {
   points: "50,6 88,28 88,72 50,94 12,72 12,28",
   fill: "none",
-  stroke: "#0b6f66",
+  stroke: SG_SERVICE_TOKENS.securityTeal,
   strokeWidth: "1.5"
 }), React.createElement("polygon", {
   points: "50,18 80,36 80,64 50,82 20,64 20,36",
   fill: "none",
-  stroke: "#0b6f66",
+  stroke: SG_SERVICE_TOKENS.securityTeal,
   strokeWidth: "1.2"
 })), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#14b8a6',
+    color: SG_SERVICE_TOKENS.signalTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 16
@@ -1718,7 +1748,7 @@ const SIPServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 800,
     fontSize: 36,
-    color: '#fff',
+    color: SG_SERVICE_TOKENS.textOnDark,
     letterSpacing: '-0.02em',
     margin: '0 0 16px',
     lineHeight: 1.15
@@ -1744,8 +1774,8 @@ const SIPServiceCTA = ({
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    background: '#0b6f66',
-    color: '#fff',
+    background: SG_SERVICE_TOKENS.securityTeal,
+    color: SG_SERVICE_TOKENS.textOnDark,
     padding: '14px 36px',
     borderRadius: 9999,
     border: 'none',
@@ -1755,11 +1785,11 @@ const SIPServiceCTA = ({
     whiteSpace: 'nowrap'
   },
   onMouseEnter: e => {
-    e.currentTarget.style.background = '#095e57';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
     e.currentTarget.style.transform = 'translateY(-2px)';
   },
   onMouseLeave: e => {
-    e.currentTarget.style.background = '#0b6f66';
+    e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
     e.currentTarget.style.transform = 'translateY(0)';
   }
 }, "Request Free Assessment"), React.createElement("a", {
@@ -1776,7 +1806,7 @@ const SIPServiceCTA = ({
 }, "Or email us at security@secugram.io")))));
 const SIPRelatedServices = () => React.createElement("div", {
   style: {
-    background: '#fff',
+    background: SG_SERVICE_TOKENS.surface,
     padding: '60px 80px'
   }
 }, React.createElement("div", {
@@ -1789,7 +1819,7 @@ const SIPRelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 11,
-    color: '#0b6f66',
+    color: SG_SERVICE_TOKENS.securityTeal,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
     marginBottom: 24
@@ -1805,13 +1835,13 @@ const SIPRelatedServices = () => React.createElement("div", {
   title: 'Security Architecture & Consulting',
   body: 'Risk assessment, Zero Trust design, compliance alignment, and executive advisory.',
   href: 'security-architecture.html',
-  accent: '#1e6fa5'
+  accent: SG_SERVICE_TOKENS.alertBlue
 }, {
   tag: 'MDR',
   title: 'Managed Detection & Response',
   body: '24/7 SOC monitoring, incident response, forensics, and threat hunting.',
   href: 'managed-detection-response.html',
-  accent: '#0b6f66'
+  accent: SG_SERVICE_TOKENS.securityTeal
 }].map(svc => React.createElement("a", {
   key: svc.title,
   href: svc.href,
@@ -1819,8 +1849,8 @@ const SIPRelatedServices = () => React.createElement("div", {
     display: 'flex',
     gap: 20,
     alignItems: 'flex-start',
-    background: '#f9fafb',
-    border: '1px solid #e5e7eb',
+    background: SG_SERVICE_TOKENS.sectionMist,
+    border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`,
     borderRadius: 12,
     padding: '22px 24px',
     textDecoration: 'none',
@@ -1831,7 +1861,7 @@ const SIPRelatedServices = () => React.createElement("div", {
     e.currentTarget.style.boxShadow = `0 4px 20px ${svc.accent}1a`;
   },
   onMouseLeave: e => {
-    e.currentTarget.style.borderColor = '#e5e7eb';
+    e.currentTarget.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
     e.currentTarget.style.boxShadow = 'none';
   }
 }, React.createElement("div", {
@@ -1852,7 +1882,7 @@ const SIPRelatedServices = () => React.createElement("div", {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 15,
-    color: '#1e3a5f',
+    color: SG_SERVICE_TOKENS.headingNavy,
     margin: '5px 0 6px',
     lineHeight: 1.3
   }
@@ -1860,7 +1890,7 @@ const SIPRelatedServices = () => React.createElement("div", {
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 13.5,
-    color: '#6b7280',
+    color: SG_SERVICE_TOKENS.mutedSlate,
     lineHeight: 1.55
   }
 }, svc.body)), React.createElement("div", {
@@ -1892,7 +1922,7 @@ const SecureInfrastructurePage = () => {
       height: '100vh',
       overflowY: 'auto',
       scrollBehavior: 'smooth',
-      background: '#fff'
+      background: SG_SERVICE_TOKENS.surface
     }
   }, React.createElement(SIPNavBar, null), React.createElement("main", null, React.createElement(SIPHero, {
     onContact: scrollToContact
@@ -1901,11 +1931,13 @@ const SecureInfrastructurePage = () => {
   }, React.createElement(SIPContactSection, null))), React.createElement(FooterSection, {
     onNav: section => {
       window.location.href = `../index.html#${section}`;
-    }
+    },
+    rootPath: "../"
   }));
 };
 const SIPNavBar = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const el = document.getElementById('sip-scroll');
     if (!el) return;
@@ -1913,14 +1945,31 @@ const SIPNavBar = () => {
     el.addEventListener('scroll', handler);
     return () => el.removeEventListener('scroll', handler);
   }, []);
+  const navItems = [{
+    label: 'Home',
+    href: '../index.html'
+  }, {
+    label: 'Why Secugram',
+    href: '../index.html#why-secugram'
+  }, {
+    label: 'How We Work',
+    href: '../index.html#methodology'
+  }, {
+    label: 'Services',
+    href: '../index.html#services',
+    active: true
+  }, {
+    label: 'Security Ops',
+    href: '../index.html#security-ops'
+  }];
   return React.createElement("nav", {
-    className: "svc-nav",
+    "data-tw-nav": true,
     style: {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: '#fff',
-      borderBottom: scrolled ? '1px solid #e5e7eb' : '1px solid transparent',
+      background: SG_SERVICE_TOKENS.surface,
+      borderBottom: scrolled ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : '1px solid transparent',
       boxShadow: scrolled ? '0 2px 12px rgba(30,58,95,0.08)' : 'none',
       transition: 'background 250ms ease, border-color 250ms ease, box-shadow 250ms ease',
       display: 'flex',
@@ -1930,60 +1979,63 @@ const SIPNavBar = () => {
       height: 72
     }
   }, React.createElement("a", {
-    className: "svc-nav-brand",
     href: "../index.html",
+    className: "sg-logo-button",
+    "aria-label": "Secugram home",
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 10,
-      textDecoration: 'none'
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 46,
-      height: 32,
-      overflow: 'hidden',
-      flexShrink: 0
+      textDecoration: 'none',
+      border: 0,
+      background: 'transparent',
+      padding: 0
     }
   }, React.createElement("img", {
-    src: "../secugram-logo.png",
+    src: "../long_logo.png",
     alt: "Secugram",
+    width: "300",
+    height: "83",
+    decoding: "async",
     style: {
-      width: 46,
+      width: 186,
       height: 'auto',
       display: 'block'
     }
-  })), React.createElement("span", {
-    style: {
-      fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 20,
-      color: '#1e3a5f',
-      letterSpacing: '0.12em'
-    }
-  }, "SECUGRAM")), React.createElement("div", {
-    className: "svc-nav-links",
+  })), React.createElement("button", {
+    className: "sg-menu-toggle",
+    type: "button",
+    "aria-label": menuOpen ? 'Close navigation menu' : 'Open navigation menu',
+    "aria-expanded": menuOpen,
+    onClick: () => setMenuOpen(v => !v)
+  }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)), React.createElement("div", {
+    className: "sg-nav-links",
+    "data-open": menuOpen ? 'true' : 'false',
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 36
+      gap: 24
     }
-  }, [['Home', '../index.html'], ['Services', '#'], ['Pricing', '../index.html#pricing'], ['Contact', '../index.html#contact']].map(([label, href]) => React.createElement("a", {
-    key: label,
-    className: "svc-nav-link",
-    href: href,
+  }, navItems.map(item => React.createElement("a", {
+    key: item.label,
+    href: item.href,
+    className: "sg-nav-link",
     style: {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 600,
-      fontSize: 14,
-      color: label === 'Services' ? '#1e3a5f' : '#6b7280',
+      fontSize: 13,
+      color: item.active ? SG_SERVICE_TOKENS.headingNavy : SG_SERVICE_TOKENS.mutedSlate,
       textDecoration: 'none',
+      borderBottom: item.active ? `2px solid ${SG_SERVICE_TOKENS.securityTeal}` : '2px solid transparent',
       paddingBottom: 2,
-      borderBottom: label === 'Services' ? '2px solid #0b6f66' : '2px solid transparent',
-      transition: 'color 200ms'
+      transition: 'color 200ms, border-color 200ms',
+      whiteSpace: 'nowrap'
     }
-  }, label)), React.createElement("button", {
-    onClick: () => {
+  }, item.label)), React.createElement("a", {
+    href: "#sip-contact",
+    className: "sg-nav-link sg-nav-cta",
+    onClick: e => {
+      e.preventDefault();
+      setMenuOpen(false);
       const el = document.getElementById('sip-contact');
       const sc = document.getElementById('sip-scroll');
       if (el && sc) sc.scrollTo({
@@ -1993,20 +2045,28 @@ const SIPNavBar = () => {
     },
     style: {
       fontFamily: "'Montserrat',sans-serif",
-      fontWeight: 700,
-      fontSize: 14,
-      background: '#0b6f66',
-      color: '#fff',
-      padding: '10px 24px',
+      fontWeight: 600,
+      fontSize: 13,
+      color: SG_SERVICE_TOKENS.textOnDark,
+      background: SG_SERVICE_TOKENS.securityTeal,
+      textDecoration: 'none',
       borderRadius: 9999,
-      border: 'none',
-      cursor: 'pointer',
-      boxShadow: '0 4px 16px rgba(11,111,102,0.28)',
-      transition: 'background 200ms'
+      padding: '11px 26px',
+      boxShadow: '0 10px 24px rgba(11,111,102,0.24)',
+      transition: 'color 200ms, background 200ms, transform 150ms, box-shadow 200ms',
+      whiteSpace: 'nowrap'
     },
-    onMouseEnter: e => e.currentTarget.style.background = '#095e57',
-    onMouseLeave: e => e.currentTarget.style.background = '#0b6f66'
-  }, "Get Started")));
+    onMouseEnter: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover;
+      e.currentTarget.style.transform = 'translateY(-1px)';
+      e.currentTarget.style.boxShadow = '0 12px 28px rgba(11,111,102,0.30)';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal;
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 10px 24px rgba(11,111,102,0.24)';
+    }
+  }, "Contact us")));
 };
 const SIPContactSection = () => {
   const [form, setForm] = React.useState({
@@ -2018,7 +2078,7 @@ const SIPContactSection = () => {
   const [sent, setSent] = React.useState(false);
   return React.createElement("div", {
     style: {
-      background: '#f9fafb',
+      background: SG_SERVICE_TOKENS.sectionMist,
       padding: '96px 80px'
     }
   }, React.createElement("div", {
@@ -2036,7 +2096,7 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       letterSpacing: '0.14em',
       textTransform: 'uppercase',
       marginBottom: 14
@@ -2046,7 +2106,7 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 800,
       fontSize: 36,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       letterSpacing: '-0.02em',
       marginBottom: 14
     }
@@ -2054,12 +2114,12 @@ const SIPContactSection = () => {
     style: {
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 16,
-      color: '#6b7280',
+      color: SG_SERVICE_TOKENS.mutedSlate,
       lineHeight: 1.6
     }
   }, "Tell us about your environment and we'll outline the right approach. Email us at ", React.createElement("span", {
     style: {
-      color: '#0b6f66',
+      color: SG_SERVICE_TOKENS.securityTeal,
       fontWeight: 600
     }
   }, "security@secugram.io"), " or fill in the form.")), sent ? React.createElement("div", {
@@ -2072,8 +2132,8 @@ const SIPContactSection = () => {
       width: 64,
       height: 64,
       borderRadius: '50%',
-      background: '#f0fdf9',
-      border: '2px solid #0b6f66',
+      background: SG_SERVICE_TOKENS.mintSurface,
+      border: `2px solid ${SG_SERVICE_TOKENS.securityTeal}`,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -2084,7 +2144,7 @@ const SIPContactSection = () => {
     height: "28",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#0b6f66",
+    stroke: SG_SERVICE_TOKENS.securityTeal,
     strokeWidth: "2.5",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -2095,13 +2155,13 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 22,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       marginBottom: 10
     }
   }, "Message Sent!"), React.createElement("div", {
     style: {
       fontFamily: "'Open Sans',sans-serif",
-      color: '#6b7280'
+      color: SG_SERVICE_TOKENS.mutedSlate
     }
   }, "We'll be in touch within one business day.")) : React.createElement("form", {
     onSubmit: e => {
@@ -2128,7 +2188,7 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2147,19 +2207,19 @@ const SIPContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })))), React.createElement("div", null, React.createElement("label", {
@@ -2168,7 +2228,7 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2186,19 +2246,19 @@ const SIPContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("div", null, React.createElement("label", {
@@ -2207,7 +2267,7 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 12,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       display: 'block',
       marginBottom: 6
     }
@@ -2224,20 +2284,20 @@ const SIPContactSection = () => {
     style: {
       width: '100%',
       padding: '11px 14px',
-      border: '1.5px solid #e5e7eb',
+      border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`,
       borderRadius: 8,
       fontFamily: "'Open Sans',sans-serif",
       fontSize: 14,
-      color: '#1e3a5f',
+      color: SG_SERVICE_TOKENS.headingNavy,
       outline: 'none',
       resize: 'vertical'
     },
     onFocus: e => {
-      e.target.style.borderColor = '#0b6f66';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.securityTeal;
       e.target.style.boxShadow = '0 0 0 3px rgba(11,111,102,0.12)';
     },
     onBlur: e => {
-      e.target.style.borderColor = '#e5e7eb';
+      e.target.style.borderColor = SG_SERVICE_TOKENS.borderCloud;
       e.target.style.boxShadow = 'none';
     }
   })), React.createElement("button", {
@@ -2246,8 +2306,8 @@ const SIPContactSection = () => {
       fontFamily: "'Montserrat',sans-serif",
       fontWeight: 700,
       fontSize: 16,
-      background: '#0b6f66',
-      color: '#fff',
+      background: SG_SERVICE_TOKENS.securityTeal,
+      color: SG_SERVICE_TOKENS.textOnDark,
       padding: '14px 0',
       borderRadius: 9999,
       border: 'none',
@@ -2255,8 +2315,8 @@ const SIPContactSection = () => {
       boxShadow: '0 4px 20px rgba(11,111,102,0.30)',
       transition: 'background 200ms'
     },
-    onMouseEnter: e => e.currentTarget.style.background = '#095e57',
-    onMouseLeave: e => e.currentTarget.style.background = '#0b6f66'
+    onMouseEnter: e => e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTealHover,
+    onMouseLeave: e => e.currentTarget.style.background = SG_SERVICE_TOKENS.securityTeal
   }, "Send Message"))));
 };
 Object.assign(window, {

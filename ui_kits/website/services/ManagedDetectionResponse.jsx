@@ -1,7 +1,7 @@
 // ManagedDetectionResponse.jsx — Managed Detection & Response service page
 
 // ── Shared atoms ─────────────────────────────────────────────
-const MDRIconMap = ({ name, color = '#0b6f66', size = 24 }) => {
+const MDRIconMap = ({ name, color = SG_SERVICE_TOKENS.securityTeal, size = 24 }) => {
   const s = { width: size, height: size };
   const p = { stroke: color, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' };
   const icons = {
@@ -23,12 +23,12 @@ const MDRIconMap = ({ name, color = '#0b6f66', size = 24 }) => {
   return icons[name] || null;
 };
 
-const MDRCheckBullet = ({ text, accent = '#0b6f66' }) => (
+const MDRCheckBullet = ({ text, accent = SG_SERVICE_TOKENS.securityTeal }) => (
   <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
     <div style={{ width: 20, height: 20, borderRadius: '50%', background: `${accent}18`, border: `1.5px solid ${accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke={accent} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
     </div>
-    <span style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 14.5, color: '#4b5563', lineHeight: 1.55 }}>{text}</span>
+    <span style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 14.5, color: SG_SERVICE_TOKENS.bodySlate, lineHeight: 1.55 }}>{text}</span>
   </div>
 );
 
@@ -36,40 +36,40 @@ const MDRCheckBullet = ({ text, accent = '#0b6f66' }) => (
 // ── 1. Hero ───────────────────────────────────────────────────
 const MDRHero = ({ onContact }) => (
   <div className="svc-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 560 }}>
-    <div className="svc-hero-copy" style={{ padding: '88px 60px 88px 80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: '#fff' }}>
+    <div className="svc-hero-copy" style={{ padding: '88px 60px 88px 80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: SG_SERVICE_TOKENS.surface }}>
       {/* Breadcrumb */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
-        <a href="../index.html" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: '#6b7280', textDecoration: 'none' }}>Home</a>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: '#6b7280' }}>Services</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: '#0b6f66' }}>Managed Detection & Response</span>
+        <a href="../index.html" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: SG_SERVICE_TOKENS.mutedSlate, textDecoration: 'none' }}>Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6" stroke={SG_SERVICE_TOKENS.mutedReadable} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: SG_SERVICE_TOKENS.mutedSlate }}>Services</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6" stroke={SG_SERVICE_TOKENS.mutedReadable} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 12, color: SG_SERVICE_TOKENS.securityTeal }}>Managed Detection & Response</span>
       </div>
       {/* Eyebrow */}
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-        <div style={{ width: 32, height: 32, borderRadius: 8, background: '#f0fdf9', border: '1px solid #ccfbf1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 32, height: 32, borderRadius: 8, background: SG_SERVICE_TOKENS.mintSurface, border: '1px solid #ccfbf1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <MDRIconMap name="activity" size={16} />
         </div>
-        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#0b6f66', letterSpacing: '0.14em', textTransform: 'uppercase' }}>MDR</span>
+        <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.securityTeal, letterSpacing: '0.14em', textTransform: 'uppercase' }}>MDR</span>
       </div>
-      <h1 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 46, color: '#1e3a5f', lineHeight: 1.07, letterSpacing: '-0.025em', margin: '0 0 22px' }}>
-        Managed Detection<br /><span style={{ color: '#0b6f66' }}>& Response</span>
+      <h1 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 46, color: SG_SERVICE_TOKENS.headingNavy, lineHeight: 1.07, letterSpacing: '-0.025em', margin: '0 0 22px' }}>
+        Managed Detection<br /><span style={{ color: SG_SERVICE_TOKENS.securityTeal }}>& Response</span>
       </h1>
-      <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: '#4b5563', lineHeight: 1.65, margin: '0 0 36px', maxWidth: 480 }}>
+      <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: SG_SERVICE_TOKENS.bodySlate, lineHeight: 1.65, margin: '0 0 36px', maxWidth: 480 }}>
         24/7 proactive monitoring, expert investigation, and rapid incident response — so threats are neutralised before they become business-impacting incidents.
       </p>
       <div className="svc-cta-row" style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
         <button onClick={onContact} style={{
           fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 15,
-          background: '#0b6f66', color: '#fff', padding: '13px 32px',
+          background: SG_SERVICE_TOKENS.securityTeal, color: SG_SERVICE_TOKENS.textOnDark, padding: '13px 32px',
           borderRadius: 9999, border: 'none', cursor: 'pointer',
           boxShadow: '0 6px 24px rgba(11,111,102,0.32)',
           transition: 'background 200ms, transform 150ms',
         }}
-          onMouseEnter={e => { e.currentTarget.style.background='#095e57'; e.currentTarget.style.transform='translateY(-2px)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background='#0b6f66'; e.currentTarget.style.transform='translateY(0)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTealHover; e.currentTarget.style.transform='translateY(-2px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTeal; e.currentTarget.style.transform='translateY(0)'; }}
         >Request Free Assessment</button>
-        <a href="#mdr-capabilities" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 14, color: '#1e3a5f', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, borderBottom: '1.5px solid #1e3a5f', paddingBottom: 1 }}>
+        <a href="#mdr-capabilities" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 14, color: SG_SERVICE_TOKENS.headingNavy, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, borderBottom: '1.5px solid #1e3a5f', paddingBottom: 1 }}>
           Explore capabilities →
         </a>
       </div>
@@ -77,8 +77,8 @@ const MDRHero = ({ onContact }) => (
       <div className="svc-stat-row" style={{ display: 'flex', gap: 40, marginTop: 48, paddingTop: 36, borderTop: '1px solid #f0f0f0' }}>
         {[['24/7','SOC Coverage'],['<1 hr','Mean time to respond'],['365','Days per year']].map(([val, label]) => (
           <div key={label}>
-            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 22, color: '#1e3a5f', letterSpacing: '-0.01em' }}>{val}</div>
-            <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 12, color: '#6b7280', marginTop: 3 }}>{label}</div>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 22, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.01em' }}>{val}</div>
+            <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 12, color: SG_SERVICE_TOKENS.mutedSlate, marginTop: 3 }}>{label}</div>
           </div>
         ))}
       </div>
@@ -109,10 +109,10 @@ const MDRSOCVisual = () => {
   }, []);
 
   const events = [
-    { time: '00:04', sev: 'LOW',  msg: 'Successful auth from new IP — reviewed', color: '#14b8a6' },
+    { time: '00:04', sev: 'LOW',  msg: 'Successful auth from new IP — reviewed', color: SG_SERVICE_TOKENS.signalTeal },
     { time: '00:11', sev: 'MED',  msg: 'Unusual outbound port scan — investigating', color: '#f59e0b' },
     { time: '00:19', sev: 'HIGH', msg: 'Lateral movement attempt — contained', color: '#ef4444' },
-    { time: '00:23', sev: 'LOW',  msg: 'Patch compliance check completed', color: '#14b8a6' },
+    { time: '00:23', sev: 'LOW',  msg: 'Patch compliance check completed', color: SG_SERVICE_TOKENS.signalTeal },
     { time: '00:31', sev: 'MED',  msg: 'Privileged account login at off-hours', color: '#f59e0b' },
   ];
   const visibleEvents = events.slice(0, 3 + (tick % 3));
@@ -121,10 +121,10 @@ const MDRSOCVisual = () => {
     <div>
       {/* SOC header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: 'rgba(20,184,166,0.7)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>SOC Live Feed</div>
+        <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.signalReadable, letterSpacing: '0.14em', textTransform: 'uppercase' }}>SOC Live Feed</div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#14b8a6', boxShadow: '0 0 8px #14b8a6' }}></div>
-          <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: '#14b8a6' }}>MONITORING ACTIVE</span>
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: SG_SERVICE_TOKENS.signalTeal, boxShadow: '0 0 8px #14b8a6' }}></div>
+          <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: SG_SERVICE_TOKENS.signalTeal }}>MONITORING ACTIVE</span>
         </div>
       </div>
 
@@ -141,7 +141,7 @@ const MDRSOCVisual = () => {
 
       {/* Response metrics */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 16 }}>
-        {[['MTTD', '< 15 min', '#14b8a6'], ['MTTR', '< 1 hour', '#0b6f66'], ['Uptime', '99.99%', '#14b8a6']].map(([label, val, col]) => (
+        {[['MTTD', '< 15 min', SG_SERVICE_TOKENS.signalTeal], ['MTTR', '< 1 hour', SG_SERVICE_TOKENS.securityTeal], ['Uptime', '99.99%', SG_SERVICE_TOKENS.signalTeal]].map(([label, val, col]) => (
           <div key={label} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(20,184,166,0.2)', borderRadius: 8, padding: '10px', textAlign: 'center' }}>
             <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 13, color: col, marginBottom: 2 }}>{val}</div>
             <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 9, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em' }}>{label}</div>
@@ -150,10 +150,10 @@ const MDRSOCVisual = () => {
       </div>
 
       {/* Pulse waveform */}
-      <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: 'rgba(20,184,166,0.5)', letterSpacing: '0.10em', textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>Threat activity — last 24h</div>
+      <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: SG_SERVICE_TOKENS.signalReadable, letterSpacing: '0.10em', textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>Threat activity — last 24h</div>
       <svg width="100%" height="28" viewBox="0 0 380 28" preserveAspectRatio="none" fill="none">
         <polyline points="0,14 30,14 45,6 55,22 65,6 75,22 90,14 130,14 145,8 155,20 165,8 175,20 185,14 220,14 235,4 245,24 255,4 265,24 275,14 310,14 325,10 335,18 345,10 355,18 365,14 380,14" stroke="#14b8a6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
-        <polyline points="0,14 60,14 85,10 110,18 135,10 160,18 185,14 380,14" stroke="#0b6f66" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.3"/>
+        <polyline points="0,14 60,14 85,10 110,18 135,10 160,18 185,14 380,14" stroke={SG_SERVICE_TOKENS.securityTeal} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.3"/>
       </svg>
     </div>
   );
@@ -162,7 +162,7 @@ const MDRSOCVisual = () => {
 
 // ── 2. Core Capabilities ──────────────────────────────────────
 const MDRCapabilities = () => {
-  const accent = '#0b6f66';
+  const accent = SG_SERVICE_TOKENS.securityTeal;
   const caps = [
     {
       icon: 'eye',
@@ -203,12 +203,12 @@ const MDRCapabilities = () => {
   ];
 
   return (
-    <div id="mdr-capabilities" className="svc-section" style={{ background: '#f9fafb', padding: '96px 80px' }}>
+    <div id="mdr-capabilities" className="svc-section" style={{ background: SG_SERVICE_TOKENS.sectionMist, padding: '96px 80px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>What's Included</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: '#1e3a5f', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Core Capabilities</h2>
-          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: '#6b7280', maxWidth: 560, margin: '0 auto', lineHeight: 1.6 }}>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', margin: '0 0 16px' }}>Core Capabilities</h2>
+          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: SG_SERVICE_TOKENS.mutedSlate, maxWidth: 560, margin: '0 auto', lineHeight: 1.6 }}>
             Detection and response that goes beyond alerting — human analysts backed by purpose-built tooling, tuned to your environment.
           </p>
         </div>
@@ -227,23 +227,23 @@ const MDRCapabilityCard = ({ icon, title, body, tags, accent }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: '#fff', border: `1px solid ${hov ? accent : '#e5e7eb'}`,
+        background: SG_SERVICE_TOKENS.surface, border: `1px solid ${hov ? accent : SG_SERVICE_TOKENS.borderCloud}`,
         borderRadius: 14, padding: '28px 26px',
         boxShadow: hov ? '0 12px 36px rgba(11,111,102,0.12)' : '0 2px 10px rgba(30,58,95,0.05)',
         transform: hov ? 'translateY(-3px)' : 'translateY(0)',
         transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease', display: 'flex', flexDirection: 'column', gap: 14,
       }}
     >
-      <div style={{ width: 48, height: 48, borderRadius: 11, background: hov ? accent : '#f0fdf9', border: `1.5px solid ${hov ? accent : '#ccfbf1'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 240ms ease, border-color 240ms ease', flexShrink: 0 }}>
-        <MDRIconMap name={icon} color={hov ? '#fff' : accent} size={20} />
+      <div style={{ width: 48, height: 48, borderRadius: 11, background: hov ? accent : SG_SERVICE_TOKENS.mintSurface, border: `1.5px solid ${hov ? accent : '#ccfbf1'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 240ms ease, border-color 240ms ease', flexShrink: 0 }}>
+        <MDRIconMap name={icon} color={hov ? SG_SERVICE_TOKENS.textOnDark : accent} size={20} />
       </div>
       <div>
-        <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16, color: '#1e3a5f', margin: '0 0 8px', lineHeight: 1.3 }}>{title}</h3>
-        <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#6b7280', lineHeight: 1.65, margin: 0 }}>{body}</p>
+        <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16, color: SG_SERVICE_TOKENS.headingNavy, margin: '0 0 8px', lineHeight: 1.3 }}>{title}</h3>
+        <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: SG_SERVICE_TOKENS.mutedSlate, lineHeight: 1.65, margin: 0 }}>{body}</p>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
         {tags.map(tag => (
-          <span key={tag} style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: accent, background: '#f0fdf9', border: '1px solid #a7f3d0', borderRadius: 9999, padding: '3px 10px', letterSpacing: '0.04em' }}>{tag}</span>
+          <span key={tag} style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 10, color: accent, background: SG_SERVICE_TOKENS.mintSurface, border: '1px solid #a7f3d0', borderRadius: 9999, padding: '3px 10px', letterSpacing: '0.04em' }}>{tag}</span>
         ))}
       </div>
     </div>
@@ -254,7 +254,7 @@ const MDRCapabilityCard = ({ icon, title, body, tags, accent }) => {
 // ── 3. SOC Lifecycle ──────────────────────────────────────────
 const MDRSOCLifecycle = () => {
   const [active, setActive] = React.useState(0);
-  const accent = '#0b6f66';
+  const accent = SG_SERVICE_TOKENS.securityTeal;
   const phases = [
     {
       label: 'Monitor',
@@ -295,29 +295,29 @@ const MDRSOCLifecycle = () => {
   const ph = phases[active];
 
   return (
-    <div style={{ background: '#fff', padding: '96px 80px' }}>
+    <div style={{ background: SG_SERVICE_TOKENS.surface, padding: '96px 80px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Operations</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: '#1e3a5f', letterSpacing: '-0.02em', margin: '0 0 16px' }}>The MDR Lifecycle</h2>
-          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: '#6b7280', maxWidth: 520, margin: '0 auto', lineHeight: 1.6 }}>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', margin: '0 0 16px' }}>The MDR Lifecycle</h2>
+          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: SG_SERVICE_TOKENS.mutedSlate, maxWidth: 520, margin: '0 auto', lineHeight: 1.6 }}>
             A continuous loop of monitoring, detection, response, and improvement — running 24 hours a day, 365 days a year.
           </p>
         </div>
 
         {/* Phase strip */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, border: '1px solid #e5e7eb', borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
           {phases.map((ph, i) => (
             <button key={ph.label} onClick={() => setActive(i)} style={{
-              background: active === i ? accent : '#fff',
-              border: 'none', borderRight: i < phases.length - 1 ? '1px solid #e5e7eb' : 'none',
+              background: active === i ? accent : SG_SERVICE_TOKENS.surface,
+              border: 'none', borderRight: i < phases.length - 1 ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : 'none',
               padding: '20px 16px', cursor: 'pointer', textAlign: 'center', transition: 'background 200ms',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
             }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: active === i ? 'rgba(255,255,255,0.18)' : '#f0fdf9', border: `1.5px solid ${active === i ? 'rgba(255,255,255,0.3)' : '#ccfbf1'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 200ms ease, border-color 200ms ease' }}>
-                <MDRIconMap name={ph.icon} color={active === i ? '#fff' : accent} size={16} />
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: active === i ? 'rgba(255,255,255,0.18)' : SG_SERVICE_TOKENS.mintSurface, border: `1.5px solid ${active === i ? 'rgba(255,255,255,0.3)' : '#ccfbf1'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 200ms ease, border-color 200ms ease' }}>
+                <MDRIconMap name={ph.icon} color={active === i ? SG_SERVICE_TOKENS.textOnDark : accent} size={16} />
               </div>
-              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: active === i ? '#fff' : '#1e3a5f' }}>{ph.label}</div>
+              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: active === i ? SG_SERVICE_TOKENS.textOnDark : SG_SERVICE_TOKENS.headingNavy }}>{ph.label}</div>
             </button>
           ))}
         </div>
@@ -325,11 +325,11 @@ const MDRSOCLifecycle = () => {
         {/* Detail */}
         <div className="svc-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'start' }}>
           <div>
-            <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 28, color: '#1e3a5f', letterSpacing: '-0.015em', margin: '0 0 16px' }}>{ph.title}</h3>
-            <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: '#4b5563', lineHeight: 1.7, margin: 0 }}>{ph.desc}</p>
+            <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 28, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.015em', margin: '0 0 16px' }}>{ph.title}</h3>
+            <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: SG_SERVICE_TOKENS.bodySlate, lineHeight: 1.7, margin: 0 }}>{ph.desc}</p>
           </div>
-          <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 12, padding: '28px', display: 'flex', flexDirection: 'column', gap: 13 }}>
-            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 10, color: '#6b7280', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 4 }}>What happens</div>
+          <div style={{ background: SG_SERVICE_TOKENS.sectionMist, border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 12, padding: '28px', display: 'flex', flexDirection: 'column', gap: 13 }}>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 10, color: SG_SERVICE_TOKENS.mutedSlate, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 4 }}>What happens</div>
             {ph.details.map(d => <MDRCheckBullet key={d} text={d} />)}
           </div>
         </div>
@@ -355,8 +355,8 @@ const MDR_SEV_STYLE = {
   'BLOCKED':   { bg: 'rgba(239,68,68,0.15)',  border: 'rgba(239,68,68,0.4)',  col: '#ef4444' },
   'CONTAINED': { bg: 'rgba(245,158,11,0.15)', border: 'rgba(245,158,11,0.4)', col: '#f59e0b' },
   'ALERTED':   { bg: 'rgba(245,158,11,0.12)', border: 'rgba(245,158,11,0.35)',col: '#f59e0b' },
-  'HUNTING':   { bg: 'rgba(20,184,166,0.12)', border: 'rgba(20,184,166,0.35)',col: '#14b8a6' },
-  'RESOLVED':  { bg: 'rgba(20,184,166,0.12)', border: 'rgba(20,184,166,0.35)',col: '#14b8a6' },
+  'HUNTING':   { bg: 'rgba(20,184,166,0.12)', border: 'rgba(20,184,166,0.35)',col: SG_SERVICE_TOKENS.signalTeal },
+  'RESOLVED':  { bg: 'rgba(20,184,166,0.12)', border: 'rgba(20,184,166,0.35)',col: SG_SERVICE_TOKENS.signalTeal },
 };
 
 const MDRThreatCoverage = () => {
@@ -381,8 +381,8 @@ const MDRThreatCoverage = () => {
         {/* Header row */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 64, alignItems: 'flex-start', marginBottom: 52 }}>
           <div>
-            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#14b8a6', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Coverage</div>
-            <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 16px', lineHeight: 1.1 }}>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.signalTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Coverage</div>
+            <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 40, color: SG_SERVICE_TOKENS.textOnDark, letterSpacing: '-0.02em', margin: '0 0 16px', lineHeight: 1.1 }}>
               Full-Spectrum Threat Coverage
             </h2>
             <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: 560, margin: 0 }}>
@@ -393,7 +393,7 @@ const MDRThreatCoverage = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 180 }}>
             {[['24/7','SOC monitoring'],['6','Threat categories'],['< 1 hr','Mean time to respond']].map(([val, label]) => (
               <div key={label} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '11px 16px', display: 'flex', gap: 14, alignItems: 'center' }}>
-                <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 17, color: '#14b8a6' }}>{val}</span>
+                <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 17, color: SG_SERVICE_TOKENS.signalTeal }}>{val}</span>
                 <span style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>{label}</span>
               </div>
             ))}
@@ -411,8 +411,8 @@ const MDRThreatCoverage = () => {
             </div>
             <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 11, color: 'rgba(255,255,255,0.28)', letterSpacing: '0.06em' }}>secugram-soc — live detection feed</span>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 7, alignItems: 'center' }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#14b8a6', boxShadow: '0 0 6px #14b8a6' }}></div>
-              <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 10, color: '#14b8a6', letterSpacing: '0.08em' }}>LIVE</span>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: SG_SERVICE_TOKENS.signalTeal, boxShadow: '0 0 6px #14b8a6' }}></div>
+              <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 10, color: SG_SERVICE_TOKENS.signalTeal, letterSpacing: '0.08em' }}>LIVE</span>
             </div>
           </div>
 
@@ -443,8 +443,8 @@ const MDRThreatCoverage = () => {
             })}
             {/* Blinking cursor */}
             <div style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#14b8a6' }}>›</span>
-              <div style={{ width: 8, height: 15, background: '#14b8a6', opacity: pulse % 2 === 0 ? 1 : 0, transition: 'opacity 300ms', borderRadius: 1 }}></div>
+              <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: SG_SERVICE_TOKENS.signalTeal }}>›</span>
+              <div style={{ width: 8, height: 15, background: SG_SERVICE_TOKENS.signalTeal, opacity: pulse % 2 === 0 ? 1 : 0, transition: 'opacity 300ms', borderRadius: 1 }}></div>
             </div>
           </div>
         </div>
@@ -458,8 +458,8 @@ const MDRThreatCoverage = () => {
             { label: 'Identity Attacks', col: '#ef4444' },
             { label: 'Insider Threats', col: '#f59e0b' },
             { label: 'Supply Chain', col: '#ef4444' },
-            { label: 'Threat Hunting', col: '#14b8a6' },
-            { label: 'DDoS', col: '#14b8a6' },
+            { label: 'Threat Hunting', col: SG_SERVICE_TOKENS.signalTeal },
+            { label: 'DDoS', col: SG_SERVICE_TOKENS.signalTeal },
           ].map(({ label, col }) => (
             <div key={label} style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: col }}></div>
@@ -475,15 +475,15 @@ const MDRThreatCoverage = () => {
 
 // ── 5. Why It Matters ─────────────────────────────────────────
 const MDRWhyItMatters = () => (
-  <div style={{ background: '#f9fafb', padding: '96px 80px' }}>
+  <div style={{ background: SG_SERVICE_TOKENS.sectionMist, padding: '96px 80px' }}>
     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
       <div className="svc-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
         <div>
-          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#0b6f66', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 16 }}>Why It Matters</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 38, color: '#1e3a5f', letterSpacing: '-0.02em', margin: '0 0 22px', lineHeight: 1.1 }}>
+          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.securityTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 16 }}>Why It Matters</div>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 38, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', margin: '0 0 22px', lineHeight: 1.1 }}>
             Attackers Move Fast.<br />Most SMEs Don't See It Coming.
           </h2>
-          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: '#4b5563', lineHeight: 1.7, margin: '0 0 32px' }}>
+          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: SG_SERVICE_TOKENS.bodySlate, lineHeight: 1.7, margin: '0 0 32px' }}>
             The average dwell time for an attacker in an SME environment is over 200 days. Without continuous monitoring, you don't know you've been breached until the ransomware note appears — or a customer tells you.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -502,10 +502,10 @@ const MDRWhyItMatters = () => (
             { val: '83%', label: 'of organisations had multiple breaches', src: 'IBM Security 2024' },
             { val: '< 1hr', label: 'Secugram mean time to respond', src: 'Secugram SLA' },
           ].map(s => (
-            <div key={s.val} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '28px 24px', boxShadow: '0 2px 12px rgba(30,58,95,0.06)' }}>
-              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 26, color: '#1e3a5f', letterSpacing: '-0.02em', marginBottom: 6 }}>{s.val}</div>
-              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13.5, color: '#4b5563', lineHeight: 1.5, marginBottom: 10 }}>{s.label}</div>
-              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 11, color: '#9ca3af' }}>{s.src}</div>
+            <div key={s.val} style={{ background: SG_SERVICE_TOKENS.surface, border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 14, padding: '28px 24px', boxShadow: '0 2px 12px rgba(30,58,95,0.06)' }}>
+              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 26, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', marginBottom: 6 }}>{s.val}</div>
+              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13.5, color: SG_SERVICE_TOKENS.bodySlate, lineHeight: 1.5, marginBottom: 10 }}>{s.label}</div>
+              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 11, color: SG_SERVICE_TOKENS.mutedReadable }}>{s.src}</div>
             </div>
           ))}
         </div>
@@ -517,14 +517,14 @@ const MDRWhyItMatters = () => (
 
 // ── 6. Tooling ────────────────────────────────────────────────
 const MDRTooling = () => (
-  <div style={{ background: '#fff', padding: '80px 80px' }}>
+  <div style={{ background: SG_SERVICE_TOKENS.surface, padding: '80px 80px' }}>
     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 44 }}>
         <div>
-          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#0b6f66', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 12 }}>Tooling</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: '#1e3a5f', letterSpacing: '-0.02em', margin: 0 }}>Vendor-Neutral Technology</h2>
+          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.securityTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 12 }}>Tooling</div>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', margin: 0 }}>Vendor-Neutral Technology</h2>
         </div>
-        <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 15, color: '#6b7280', maxWidth: 380, lineHeight: 1.6, margin: 0 }}>
+        <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 15, color: SG_SERVICE_TOKENS.mutedSlate, maxWidth: 380, lineHeight: 1.6, margin: 0 }}>
           We integrate with your existing stack or deploy best-fit solutions — we're not tied to any single vendor.
         </p>
       </div>
@@ -535,13 +535,13 @@ const MDRTooling = () => (
           { cat: 'Cloud Security', tools: ['AWS Security Hub', 'Azure Defender', 'GCP Security', 'Wiz / Prisma'] },
           { cat: 'Threat Intel', tools: ['MISP', 'Recorded Future', 'VirusTotal', 'ISAC feeds'] },
         ].map(({ cat, tools }) => (
-          <div key={cat} style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: '24px 22px', background: '#fff', boxShadow: '0 2px 8px rgba(30,58,95,0.05)' }}>
-            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 14, color: '#1e3a5f', marginBottom: 16 }}>{cat}</div>
+          <div key={cat} style={{ border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 12, padding: '24px 22px', background: SG_SERVICE_TOKENS.surface, boxShadow: '0 2px 8px rgba(30,58,95,0.05)' }}>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 14, color: SG_SERVICE_TOKENS.headingNavy, marginBottom: 16 }}>{cat}</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {tools.map(t => (
                 <div key={t} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#0b6f66', flexShrink: 0 }}></div>
-                  <span style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13, color: '#4b5563' }}>{t}</span>
+                  <div style={{ width: 5, height: 5, borderRadius: '50%', background: SG_SERVICE_TOKENS.securityTeal, flexShrink: 0 }}></div>
+                  <span style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13, color: SG_SERVICE_TOKENS.bodySlate }}>{t}</span>
                 </div>
               ))}
             </div>
@@ -555,7 +555,7 @@ const MDRTooling = () => (
 
 // ── 7. CTA ────────────────────────────────────────────────────
 const MDRServiceCTA = ({ onContact }) => (
-  <div style={{ background: '#f9fafb', padding: '96px 80px' }}>
+  <div style={{ background: SG_SERVICE_TOKENS.sectionMist, padding: '96px 80px' }}>
     <div style={{ maxWidth: 1080, margin: '0 auto' }}>
       <div className="svc-hero-visual" style={{
       background: 'linear-gradient(140deg, #071420 0%, #0d2335 100%)',
@@ -564,12 +564,12 @@ const MDRServiceCTA = ({ onContact }) => (
         position: 'relative', overflow: 'hidden',
       }}>
         <svg width="220" height="220" viewBox="0 0 100 100" style={{ position: 'absolute', right: -30, bottom: -40, opacity: 0.08 }}>
-          <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" fill="none" stroke="#0b6f66" strokeWidth="1.5"/>
-          <polygon points="50,18 80,36 80,64 50,82 20,64 20,36" fill="none" stroke="#0b6f66" strokeWidth="1.2"/>
+          <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" fill="none" stroke={SG_SERVICE_TOKENS.securityTeal} strokeWidth="1.5"/>
+          <polygon points="50,18 80,36 80,64 50,82 20,64 20,36" fill="none" stroke={SG_SERVICE_TOKENS.securityTeal} strokeWidth="1.2"/>
         </svg>
         <div>
-          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#14b8a6', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 16 }}>Get Started</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 16px', lineHeight: 1.15 }}>
+          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.signalTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 16 }}>Get Started</div>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: SG_SERVICE_TOKENS.textOnDark, letterSpacing: '-0.02em', margin: '0 0 16px', lineHeight: 1.15 }}>
             Know About Threats Before<br />They Become Incidents
           </h2>
           <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: 'rgba(255,255,255,0.72)', lineHeight: 1.65, margin: 0 }}>
@@ -579,13 +579,13 @@ const MDRServiceCTA = ({ onContact }) => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0 }}>
           <button onClick={onContact} style={{
             fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 15,
-            background: '#0b6f66', color: '#fff', padding: '14px 36px',
+            background: SG_SERVICE_TOKENS.securityTeal, color: SG_SERVICE_TOKENS.textOnDark, padding: '14px 36px',
             borderRadius: 9999, border: 'none', cursor: 'pointer',
             boxShadow: '0 6px 24px rgba(11,111,102,0.40)',
             transition: 'background 200ms, transform 150ms', whiteSpace: 'nowrap',
           }}
-            onMouseEnter={e => { e.currentTarget.style.background='#095e57'; e.currentTarget.style.transform='translateY(-2px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background='#0b6f66'; e.currentTarget.style.transform='translateY(0)'; }}
+            onMouseEnter={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTealHover; e.currentTarget.style.transform='translateY(-2px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTeal; e.currentTarget.style.transform='translateY(0)'; }}
           >Request Free Assessment</button>
           <a href="../index.html#contact" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', textAlign: 'center' }}>
             Or email security@secugram.io
@@ -599,26 +599,26 @@ const MDRServiceCTA = ({ onContact }) => (
 
 // ── 8. Related Services ───────────────────────────────────────
 const MDRRelatedServices = () => (
-  <div style={{ background: '#fff', padding: '60px 80px' }}>
+  <div style={{ background: SG_SERVICE_TOKENS.surface, padding: '60px 80px' }}>
     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-      <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: '#0b6f66', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 24 }}>Also from Secugram</div>
+      <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 11, color: SG_SERVICE_TOKENS.securityTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 24 }}>Also from Secugram</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
         {[
-          { tag: 'Infrastructure', title: 'Secure Infrastructure Platform', body: 'Hardened cloud, hybrid, and on-prem environments with integrated 24/7 monitoring.', href: 'secure-infrastructure.html', accent: '#0b6f66' },
-          { tag: 'Consulting', title: 'Security Architecture & Consulting', body: 'Risk assessment, Zero Trust design, compliance alignment, and executive advisory.', href: 'security-architecture.html', accent: '#1e6fa5' },
+          { tag: 'Infrastructure', title: 'Secure Infrastructure Platform', body: 'Hardened cloud, hybrid, and on-prem environments with integrated 24/7 monitoring.', href: 'secure-infrastructure.html', accent: SG_SERVICE_TOKENS.securityTeal },
+          { tag: 'Consulting', title: 'Security Architecture & Consulting', body: 'Risk assessment, Zero Trust design, compliance alignment, and executive advisory.', href: 'security-architecture.html', accent: SG_SERVICE_TOKENS.alertBlue },
         ].map(svc => (
           <a key={svc.title} href={svc.href} style={{
             display: 'flex', gap: 20, alignItems: 'flex-start',
-            background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 12, padding: '22px 24px',
+            background: SG_SERVICE_TOKENS.sectionMist, border: `1px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 12, padding: '22px 24px',
             textDecoration: 'none', transition: 'border-color 200ms, box-shadow 200ms',
           }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = svc.accent; e.currentTarget.style.boxShadow = `0 4px 20px ${svc.accent}1a`; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.boxShadow = 'none'; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = SG_SERVICE_TOKENS.borderCloud; e.currentTarget.style.boxShadow = 'none'; }}
           >
             <div style={{ flex: 1 }}>
               <span style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 10, color: svc.accent, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{svc.tag}</span>
-              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 15, color: '#1e3a5f', margin: '5px 0 6px', lineHeight: 1.3 }}>{svc.title}</div>
-              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13.5, color: '#6b7280', lineHeight: 1.55 }}>{svc.body}</div>
+              <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 15, color: SG_SERVICE_TOKENS.headingNavy, margin: '5px 0 6px', lineHeight: 1.3 }}>{svc.title}</div>
+              <div style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 13.5, color: SG_SERVICE_TOKENS.mutedSlate, lineHeight: 1.55 }}>{svc.body}</div>
             </div>
             <MDRIconMap name="arrow" color={svc.accent} size={18} />
           </a>
@@ -634,61 +634,61 @@ const MDRContactSection = () => {
   const [form, setForm] = React.useState({ name: '', email: '', company: '', message: '' });
   const [sent, setSent] = React.useState(false);
   return (
-    <div style={{ background: '#f9fafb', padding: '96px 80px' }}>
+    <div style={{ background: SG_SERVICE_TOKENS.sectionMist, padding: '96px 80px' }}>
       <div style={{ maxWidth: 680, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#0b6f66', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Contact</div>
-          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: '#1e3a5f', letterSpacing: '-0.02em', marginBottom: 14 }}>Discuss Your MDR Requirements</h2>
-          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: '#6b7280', lineHeight: 1.6 }}>
-            Tell us about your environment and current detection gaps. Email us at <span style={{ color: '#0b6f66', fontWeight: 600 }}>security@secugram.io</span> or fill in the form.
+          <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: SG_SERVICE_TOKENS.securityTeal, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>Contact</div>
+          <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 800, fontSize: 36, color: SG_SERVICE_TOKENS.headingNavy, letterSpacing: '-0.02em', marginBottom: 14 }}>Discuss Your MDR Requirements</h2>
+          <p style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 16, color: SG_SERVICE_TOKENS.mutedSlate, lineHeight: 1.6 }}>
+            Tell us about your environment and current detection gaps. Email us at <span style={{ color: SG_SERVICE_TOKENS.securityTeal, fontWeight: 600 }}>security@secugram.io</span> or fill in the form.
           </p>
         </div>
         {sent ? (
           <div style={{ textAlign: 'center', padding: '48px 0' }}>
-            <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#f0fdf9', border: '2px solid #0b6f66', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0b6f66" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: SG_SERVICE_TOKENS.mintSurface, border: `2px solid ${SG_SERVICE_TOKENS.securityTeal}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={SG_SERVICE_TOKENS.securityTeal} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 22, color: '#1e3a5f', marginBottom: 10 }}>Message Sent!</div>
-            <div style={{ fontFamily: "'Open Sans',sans-serif", color: '#6b7280' }}>We'll be in touch within one business day.</div>
+            <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 22, color: SG_SERVICE_TOKENS.headingNavy, marginBottom: 10 }}>Message Sent!</div>
+            <div style={{ fontFamily: "'Open Sans',sans-serif", color: SG_SERVICE_TOKENS.mutedSlate }}>We'll be in touch within one business day.</div>
           </div>
         ) : (
           <form onSubmit={e => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div className="svc-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {[['name','Full Name','Jane Smith'],['email','Work Email','jane@company.com']].map(([key,label,ph]) => (
                 <div key={key}>
-                  <label htmlFor={`mdr-${key}`} style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>{label}</label>
+                  <label htmlFor={`mdr-${key}`} style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: SG_SERVICE_TOKENS.headingNavy, display: 'block', marginBottom: 6 }}>{label}</label>
                   <input id={`mdr-${key}`} name={key} autoComplete={key==='email'?'email':'name'} type={key==='email'?'email':'text'} placeholder={ph} value={form[key]} onChange={e=>setForm({...form,[key]:e.target.value})} required
-                    style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none' }}
-                    onFocus={e=>{e.target.style.borderColor='#0b6f66'; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
-                    onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+                    style={{ width: '100%', padding: '11px 14px', border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: SG_SERVICE_TOKENS.headingNavy, outline: 'none' }}
+                    onFocus={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.securityTeal; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
+                    onBlur={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.borderCloud; e.target.style.boxShadow='none';}}
                   />
                 </div>
               ))}
             </div>
             <div>
-              <label htmlFor="mdr-company" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>Company</label>
+              <label htmlFor="mdr-company" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: SG_SERVICE_TOKENS.headingNavy, display: 'block', marginBottom: 6 }}>Company</label>
               <input id="mdr-company" name="company" type="text" autoComplete="organization" placeholder="Acme Inc." value={form.company} onChange={e=>setForm({...form,company:e.target.value})}
-                style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none' }}
-                onFocus={e=>{e.target.style.borderColor='#0b6f66'; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
-                onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+                style={{ width: '100%', padding: '11px 14px', border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: SG_SERVICE_TOKENS.headingNavy, outline: 'none' }}
+                onFocus={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.securityTeal; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
+                onBlur={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.borderCloud; e.target.style.boxShadow='none';}}
               />
             </div>
             <div>
-              <label htmlFor="mdr-message" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: '#1e3a5f', display: 'block', marginBottom: 6 }}>Message</label>
+              <label htmlFor="mdr-message" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 12, color: SG_SERVICE_TOKENS.headingNavy, display: 'block', marginBottom: 6 }}>Message</label>
               <textarea id="mdr-message" name="message" placeholder="Tell us about your current monitoring capabilities and environment..." rows={4} value={form.message} onChange={e=>setForm({...form,message:e.target.value})}
-                style={{ width: '100%', padding: '11px 14px', border: '1.5px solid #e5e7eb', borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: '#1e3a5f', outline: 'none', resize: 'vertical' }}
-                onFocus={e=>{e.target.style.borderColor='#0b6f66'; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
-                onBlur={e=>{e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow='none';}}
+                style={{ width: '100%', padding: '11px 14px', border: `1.5px solid ${SG_SERVICE_TOKENS.borderCloud}`, borderRadius: 8, fontFamily: "'Open Sans',sans-serif", fontSize: 14, color: SG_SERVICE_TOKENS.headingNavy, outline: 'none', resize: 'vertical' }}
+                onFocus={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.securityTeal; e.target.style.boxShadow='0 0 0 3px rgba(11,111,102,0.12)';}}
+                onBlur={e=>{e.target.style.borderColor=SG_SERVICE_TOKENS.borderCloud; e.target.style.boxShadow='none';}}
               />
             </div>
             <button type="submit" style={{
               fontFamily: "'Montserrat',sans-serif", fontWeight: 700, fontSize: 16,
-              background: '#0b6f66', color: '#fff', padding: '14px 0',
+              background: SG_SERVICE_TOKENS.securityTeal, color: SG_SERVICE_TOKENS.textOnDark, padding: '14px 0',
               borderRadius: 9999, border: 'none', cursor: 'pointer',
               boxShadow: '0 4px 20px rgba(11,111,102,0.30)', transition: 'background 200ms',
             }}
-              onMouseEnter={e=>e.currentTarget.style.background='#095e57'}
-              onMouseLeave={e=>e.currentTarget.style.background='#0b6f66'}
+              onMouseEnter={e=>e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTealHover}
+              onMouseLeave={e=>e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTeal}
             >Send Message</button>
           </form>
         )}
@@ -718,14 +718,14 @@ const MDRNavBar = () => {
   ];
   return (
     <nav data-tw-nav style={{
-      position: 'sticky', top: 0, zIndex: 100, background: '#fff',
-      borderBottom: scrolled ? '1px solid #e5e7eb' : '1px solid transparent',
+      position: 'sticky', top: 0, zIndex: 100, background: SG_SERVICE_TOKENS.surface,
+      borderBottom: scrolled ? `1px solid ${SG_SERVICE_TOKENS.borderCloud}` : '1px solid transparent',
       boxShadow: scrolled ? '0 2px 12px rgba(30,58,95,0.08)' : 'none',
       transition: 'background 250ms ease, border-color 250ms ease, box-shadow 250ms ease',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 60px', height: 72,
     }}>
-      <a href="../index.html" className="sg-logo-button" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', border: 0, background: 'transparent', padding: 0 }}>
+      <a href="../index.html" className="sg-logo-button" aria-label="Secugram home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', border: 0, background: 'transparent', padding: 0 }}>
         <img src="../long_logo.png" alt="Secugram" width="300" height="83" decoding="async" style={{ width: 186, height: 'auto', display: 'block' }} />
       </a>
       <button className="sg-menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
@@ -735,8 +735,8 @@ const MDRNavBar = () => {
         {navItems.map(item => (
           <a key={item.label} href={item.href} className="sg-nav-link" style={{
             fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 13,
-            color: item.active ? '#1e3a5f' : '#6b7280', textDecoration: 'none',
-            borderBottom: item.active ? '2px solid #0b6f66' : '2px solid transparent',
+            color: item.active ? SG_SERVICE_TOKENS.headingNavy : SG_SERVICE_TOKENS.mutedSlate, textDecoration: 'none',
+            borderBottom: item.active ? `2px solid ${SG_SERVICE_TOKENS.securityTeal}` : '2px solid transparent',
             paddingBottom: 2, transition: 'color 200ms, border-color 200ms', whiteSpace: 'nowrap',
           }}>{item.label}</a>
         ))}
@@ -744,13 +744,13 @@ const MDRNavBar = () => {
           onClick={e => { e.preventDefault(); setMenuOpen(false); const el = document.getElementById('mdr-contact'); const sc = document.getElementById('mdr-scroll'); if (el && sc) sc.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' }); }}
           style={{
             fontFamily: "'Montserrat',sans-serif", fontWeight: 600, fontSize: 13,
-            color: '#fff', background: '#0b6f66', textDecoration: 'none',
+            color: SG_SERVICE_TOKENS.textOnDark, background: SG_SERVICE_TOKENS.securityTeal, textDecoration: 'none',
             borderRadius: 9999, padding: '11px 26px',
             boxShadow: '0 10px 24px rgba(11,111,102,0.24)',
             transition: 'color 200ms, background 200ms, transform 150ms, box-shadow 200ms', whiteSpace: 'nowrap',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background='#095e57'; e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow='0 12px 28px rgba(11,111,102,0.30)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background='#0b6f66'; e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 10px 24px rgba(11,111,102,0.24)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTealHover; e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow='0 12px 28px rgba(11,111,102,0.30)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background=SG_SERVICE_TOKENS.securityTeal; e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 10px 24px rgba(11,111,102,0.24)'; }}
         >Contact us</a>
       </div>
     </nav>
@@ -766,7 +766,7 @@ const ManagedDetectionResponsePage = () => {
     if (el && sc) sc.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' });
   };
   return (
-    <div id="mdr-scroll" className="svc-page" style={{ height: '100vh', overflowY: 'auto', scrollBehavior: 'smooth', background: '#fff' }}>
+    <div id="mdr-scroll" className="svc-page" style={{ height: '100vh', overflowY: 'auto', scrollBehavior: 'smooth', background: SG_SERVICE_TOKENS.surface }}>
       <MDRNavBar />
       <main>
       <MDRHero onContact={scrollToContact} />

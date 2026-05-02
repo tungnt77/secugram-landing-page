@@ -4027,7 +4027,8 @@ const FooterLogoMark = () => React.createElement("svg", {
   strokeLinejoin: "round"
 }));
 const FooterSection = ({
-  onNav
+  onNav,
+  rootPath = ''
 }) => React.createElement("footer", {
   "data-tw-footer": true,
   style: {
@@ -4048,19 +4049,22 @@ const FooterSection = ({
     gap: 48,
     marginBottom: 56
   }
-}, React.createElement("div", null, React.createElement("div", {
+}, React.createElement("div", null, React.createElement("a", {
+  href: rootPath + 'index.html',
   style: {
     display: 'flex',
     alignItems: 'center',
     gap: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    textDecoration: 'none'
   }
 }, React.createElement(FooterLogoMark, null), React.createElement("span", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 18,
-    letterSpacing: '0.12em'
+    letterSpacing: '0.12em',
+    color: '#fff'
   }
 }, "SECUGRAM")), React.createElement("p", {
   style: {
@@ -4126,22 +4130,21 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Product"), ['Features', 'Pricing', 'Security', 'Changelog'].map(l => React.createElement("button", {
-  key: l,
-  type: "button",
+}, "Services"), [['Secure Infrastructure', rootPath + 'services/secure-infrastructure.html'], ['Security Architecture', rootPath + 'services/security-architecture.html'], ['Managed Detection & Response', rootPath + 'services/managed-detection-response.html']].map(([label, href]) => React.createElement("a", {
+  key: label,
+  href: href,
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
     color: '#94a3b8',
     marginBottom: 12,
-    cursor: 'pointer',
     display: 'block',
-    background: 'transparent',
-    border: 0,
-    padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textDecoration: 'none',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
@@ -4151,9 +4154,10 @@ const FooterSection = ({
     color: '#fff',
     marginBottom: 20
   }
-}, "Company"), ['About', 'Blog', 'Careers', 'Contact'].map(l => React.createElement("button", {
-  key: l,
+}, "Company"), [['Why Secugram', 'why-secugram'], ['How We Work', 'methodology'], ['Security Ops', 'security-ops'], ['Contact', 'contact']].map(([label, target]) => React.createElement("button", {
+  key: label,
   type: "button",
+  onClick: () => onNav && onNav(target),
   style: {
     fontFamily: "'Open Sans',sans-serif",
     fontSize: 14,
@@ -4164,9 +4168,12 @@ const FooterSection = ({
     background: 'transparent',
     border: 0,
     padding: 0,
-    textAlign: 'left'
-  }
-}, l))), React.createElement("div", null, React.createElement("div", {
+    textAlign: 'left',
+    transition: 'color 200ms'
+  },
+  onMouseEnter: e => e.currentTarget.style.color = '#e2e8f0',
+  onMouseLeave: e => e.currentTarget.style.color = '#94a3b8'
+}, label))), React.createElement("div", null, React.createElement("div", {
   style: {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
