@@ -51,37 +51,6 @@ const FEATURES = [
   },
 ];
 
-const ServiceShortcutLinks = () => (
-  <div className="sg-service-shortcuts" style={{
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 12,
-    flexWrap: 'wrap',
-    marginTop: 26,
-  }}>
-    {FEATURES.map(({ title, href, accent }) => (
-      <a key={title} href={href} style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 8,
-        minHeight: 42,
-        padding: '0 17px',
-        borderRadius: 999,
-        border: `1px solid ${accent}33`,
-        background: `${accent}0d`,
-        color: '#1e3a5f',
-        fontFamily: "'Montserrat',sans-serif",
-        fontWeight: 800,
-        fontSize: 12,
-        textDecoration: 'none',
-      }}>
-        {title}
-        <span aria-hidden="true" style={{ color: accent }}>→</span>
-      </a>
-    ))}
-  </div>
-);
-
 // Integrations strip — two-row dotted connector layout
 
 // Cloud / network / EDR / AV
@@ -412,7 +381,6 @@ const FeaturesSection = () => (
         <p data-tw-muted data-tw-body-text style={{ fontFamily: "'Open Sans',sans-serif", fontSize: 17, color: '#6b7280', maxWidth: 560, margin: '0 auto', lineHeight: 1.6 }}>
           From infrastructure hardening to round-the-clock threat response — every layer of your security, fully covered by a dedicated team of experts.
         </p>
-        <ServiceShortcutLinks />
       </div>
 
       {/* Cards grid */}

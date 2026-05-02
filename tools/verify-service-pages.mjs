@@ -36,10 +36,6 @@ for (const page of expectedPages) {
 const features = readFileSync(join(websiteDir, 'Features.jsx'), 'utf8');
 const footer = readFileSync(join(websiteDir, 'Footer.jsx'), 'utf8');
 
-if (!features.includes('sg-service-shortcuts')) {
-  failures.push('Core Services section is missing visible service shortcut links.');
-}
-
 for (const page of expectedPages) {
   if (!features.includes(page) && !footer.includes(page)) {
     failures.push(`No homepage link references ${page}`);
