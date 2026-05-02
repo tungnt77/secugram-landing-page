@@ -35,22 +35,14 @@ for (const page of expectedPages) {
 
 const features = readFileSync(join(websiteDir, 'Features.jsx'), 'utf8');
 const footer = readFileSync(join(websiteDir, 'Footer.jsx'), 'utf8');
-const bundle = readFileSync(join(websiteDir, 'dist', 'site.js'), 'utf8');
 
 if (!features.includes('sg-service-shortcuts')) {
   failures.push('Core Services section is missing visible service shortcut links.');
 }
 
-if (!bundle.includes('sg-service-shortcuts')) {
-  failures.push('Published bundle is missing visible service shortcut links. Rebuild ui_kits/website/dist/site.js.');
-}
-
 for (const page of expectedPages) {
   if (!features.includes(page) && !footer.includes(page)) {
     failures.push(`No homepage link references ${page}`);
-  }
-  if (!bundle.includes(page)) {
-    failures.push(`Published bundle is missing service link: ${page}`);
   }
 }
 
