@@ -1,3 +1,10 @@
 .superpowers/
 .claude/settings.local.json
 ui_kits/website/.claude/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
